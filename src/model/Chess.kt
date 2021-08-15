@@ -3,6 +3,7 @@ package model
 class Chess {
 
     val board = Array(8) { x -> Array(8) { y -> Box(Coordinate(x, y), null) } }
+    val activeBoxes = ArrayList<Box>()
 
     init {
         initBoard()

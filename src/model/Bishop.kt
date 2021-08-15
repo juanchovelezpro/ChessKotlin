@@ -13,7 +13,13 @@ class Bishop(position: Coordinate, team: Team) : Piece(position, team) {
 
     }
 
-    override fun possibleMovements(board: Array<Array<Box>>): List<Box> {
-        TODO("Not yet implemented")
+    override fun possibleMovements(board: Array<Array<Box>>): ArrayList<Box> {
+        val pMovements = ArrayList<Box>()
+
+        return pMovements
     }
+
+
+
+
 }

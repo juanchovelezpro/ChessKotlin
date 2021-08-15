@@ -1,6 +1,9 @@
 package ui
 
 import model.Chess
+import model.Coordinate
+import model.Pawn
+import model.Team
 import java.awt.BorderLayout
 import javax.swing.JFrame
 
@@ -18,6 +21,12 @@ class Window : JFrame() {
         setLocationRelativeTo(null)
 
         chess = Chess()
+
+        chess.board[5][6].piece = Pawn(Coordinate(5,6), Team.BLACK)
+        chess.board[5][1].piece = Pawn(Coordinate(5,1), Team.BLACK)
+        chess.board[3][3].piece = Pawn(Coordinate(3,3), Team.BLACK)
+        chess.board[3][5].piece = Pawn(Coordinate(3,5), Team.BLACK)
+        chess.board[4][4].piece = Pawn(Coordinate(4,4), Team.WHITE)
 
         boardPanel = BoardPanel(this)
 
