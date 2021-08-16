@@ -1,13 +1,16 @@
 package ui
 
 import model.Box
+import model.Team
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 
 class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAdapter() {
 
     override fun mouseClicked(e: MouseEvent?) {
+        println("--------- TOUCHED -----------")
         println(boxTouched)
+        println("-----------------------------")
 
         val chess = panelBoard.window.chess
 
@@ -71,16 +74,26 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
 
         val chess = panelBoard.window.chess
 
-        // If the box selected is a possible movement
-        if (chess.possibleBoxes.contains(boxTouched)) {
-            chess.activePiece?.move(chess.board, boxTouched.position)
-            chess.activePiece = null
-            chess.onMovement = false
-        }
+        chess.activePiece?.move(chess.board, boxTouched.position)
+        chess.activePiece = null
+        chess.onMovement = false
 
         chess.activePiece = null
         chess.onMovement = false
         disablePreviousActiveBoxes()
+
+    }
+
+    // This is for handle "En Passant" and Promotion to Queen
+    private fun handlePawnSpecialMovements() {
+        if (boxTouched.piece?.team == Team.WHITE) {
+
+        } else {
+
+        }
+    }
+
+    private fun handleKingCastlingMovement() {
 
     }
 }

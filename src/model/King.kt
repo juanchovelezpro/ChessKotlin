@@ -94,6 +94,19 @@ class King(position: Coordinate, team: Team) : Piece(position, team) {
             }
         }
 
+        // Verify long castling
+        val prevBox = board[position.x][position.y - 1]
+        val prevTwoBox = board[position.x][position.y - 2]
+        val prevThreeBox = board[position.x][position.y - 3]
+        val prevRookBox = board[position.x][position.y - 4]
+
+        if(prevBox.piece == null && prevTwoBox.piece == null && prevThreeBox.piece == null){
+            if(prevRookBox.piece != null && !prevRookBox.piece!!.firstMovementDone){
+                pMovements.add(prevTwoBox)
+            }
+        }
+
+
     }
 
 }

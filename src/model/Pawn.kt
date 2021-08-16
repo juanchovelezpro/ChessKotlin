@@ -2,6 +2,8 @@ package model
 
 class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
 
+    var firstMoveWasTwo = false
+    var canBeKilledEnPassant = false
 
     init {
 
@@ -18,169 +20,104 @@ class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
         val pMovements = ArrayList<Box>()
 
         if (team == Team.WHITE) {
-            pMovements.addAll(possibleWhiteMovements(board))
+            possibleWhiteMovements(board, pMovements)
         } else {
-            pMovements.addAll(possibleBlackMovements(board))
+            possibleBlackMovements(board, pMovements)
         }
 
         return pMovements
     }
 
-    private fun possibleBlackMovements(board: Array<Array<Box>>): ArrayList<Box> {
+    private fun possibleWhiteMovements(board: Array<Array<Box>>, pMovements: ArrayList<Box>) {
+        // If it is in the initial position
+        if (position.x == 6) {
 
-        val pMovements = ArrayList<Box>()
+            val nextBox = board[position.x - 1][position.y]
+            val nextTwoBox = board[position.x - 2][position.y]
 
-        if (position.x != 1) {
-
-            // x < 7 to avoid out of bounds exception if this piece is on 7, then is a Queen.
-            if (position.x < 7) {
-
-                // Check the next box
-                if (board[position.x + 1][position.y].piece == null) {
-                    pMovements.add(board[position.x + 1][position.y])
-                }
+            if (nextBox.piece == null && nextTwoBox.piece == null) {
+                pMovements.add(nextTwoBox)
             }
 
-        } else {
-
-            // Check two next boxes for first movement
-            for (i in position.x + 1..position.x + 2) {
-                if (board[i][position.y].piece == null) {
-                    pMovements.add(board[i][position.y])
-                } else {
-                    // If there is another piece, then stop.
-                    break
-                }
-            }
 
         }
 
-        // Check diagonals
-
-        if (position.x < 7) {
-            val downRight = if (position.y in 0..6) {
-                checkDiagonal(board, 4)
-            } else {
-                null
-            }
-
-            val downLeft = if (position.y in 1..7) {
-                checkDiagonal(board, 3)
-            } else {
-                null
-            }
-
-            if (downLeft != null) {
-                pMovements.add(downLeft)
-            }
-
-            if (downRight != null) {
-                pMovements.add(downRight)
-            }
-        }
-
-        return pMovements
-    }
-
-    private fun possibleWhiteMovements(board: Array<Array<Box>>): ArrayList<Box> {
-
-        val pMovements = ArrayList<Box>()
-
-        // The first movement has been done
-        if (position.x != 6) {
-
-            // x > 0 to avoid out of bounds exception if this piece is on 0, then is a Queen.
-            if (position.x > 0) {
-
-                // Check next box
-                if (board[position.x - 1][position.y].piece == null) {
-                    pMovements.add(board[position.x - 1][position.y])
-                }
-
-            }
-
-            // In the initial position
-        } else {
-
-            // Check the next two boxes for first movement
-            for (i in position.x - 1 downTo position.x - 2) {
-
-                if (board[i][position.y].piece == null) {
-                    pMovements.add(board[i][position.y])
-                } else {
-                    // If there is another piece, then stop
-                    break
-                }
-
-            }
-
-        }
-
-        // Check diagonals
-
+        // Check next
         if (position.x > 0) {
-            val upRight = if (position.y in 0..6) {
-                checkDiagonal(board, 2)
-            } else {
-                null
+
+            val box = board[position.x - 1][position.y]
+            addIfItIsPossibleMovement(box, pMovements, normal = true)
+
+            // Check diagonal left up
+            if (position.y > 0) {
+                val leftUp = board[position.x - 1][position.y - 1]
+                addIfItIsPossibleMovement(leftUp, pMovements, kill = true)
             }
 
-            val upLeft = if (position.y in 1..7) {
-                checkDiagonal(board, 1)
-            } else {
-                null
+            // Check diagonal right up
+            if (position.y < 7) {
+                val rightUp = board[position.x - 1][position.y + 1]
+                addIfItIsPossibleMovement(rightUp, pMovements, kill = true)
             }
 
-            if (upRight != null) {
-                pMovements.add(upRight)
-            }
-
-            if (upLeft != null) {
-                pMovements.add(upLeft)
-            }
         }
 
-        return pMovements
     }
 
-    private fun checkDiagonal(board: Array<Array<Box>>, diagonal: Int): Box? {
+    private fun possibleBlackMovements(board: Array<Array<Box>>, pMovements: ArrayList<Box>) {
 
-        var box = when (diagonal) {
+        // If it is in the initial position
+        if (position.x == 1) {
 
-            // UP LEFT
-            1 -> {
-                board[position.x - 1][position.y - 1]
+            val nextBox = board[position.x + 1][position.y]
+            val nextTwoBox = board[position.x + 2][position.y]
+
+            if (nextBox.piece == null && nextTwoBox.piece == null) {
+                pMovements.add(nextTwoBox)
             }
 
-            // UP RIGHT
-            2 -> {
-                board[position.x - 1][position.y + 1]
-            }
-
-            // DOWN LEFT
-            3 -> {
-                board[position.x + 1][position.y - 1]
-            }
-
-            // DOWN RIGHT
-            4 -> {
-                board[position.x + 1][position.y + 1]
-            }
-
-            else -> null
         }
 
-        if (box?.piece != null) {
-            if (!isEnemy(box.piece!!)) {
-                box = null
+        // Check next
+        if (position.x < 7) {
+
+            val box = board[position.x + 1][position.y]
+            addIfItIsPossibleMovement(box, pMovements, normal = true)
+
+            // Check diagonal left down
+            if (position.y > 0) {
+                val leftDown = board[position.x + 1][position.y - 1]
+                addIfItIsPossibleMovement(leftDown, pMovements, kill = true)
             }
-        } else {
-            box = null
+
+            // Check diagonal right down
+            if (position.y < 7) {
+                val rightDown = board[position.x + 1][position.y + 1]
+                addIfItIsPossibleMovement(rightDown, pMovements, kill = true)
+            }
+
         }
 
 
-        return box
+    }
 
+    private fun addIfItIsPossibleMovement(
+        box: Box,
+        pMovements: ArrayList<Box>,
+        kill: Boolean = false,
+        normal: Boolean = false
+    ) {
+        if (normal) {
+            if (box.piece == null) {
+                pMovements.add(box)
+            }
+        }
+
+        if (kill) {
+            if (box.piece != null && isEnemy(box.piece!!)) {
+                pMovements.add(box)
+            }
+        }
     }
 
 

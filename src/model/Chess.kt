@@ -1,6 +1,6 @@
 package model
 
-class Chess {
+class Chess : ObserverActions{
 
     val board = Array(8) { x -> Array(8) { y -> Box(Coordinate(x, y), null) } }
 
@@ -28,6 +28,7 @@ class Chess {
 
                 val thePiece = board[i][j].piece
                 if (thePiece != null) {
+                    thePiece.observer = this
                     if (thePiece.team == Team.WHITE) {
                         whitePiecesAlive.add(thePiece)
                     } else {
@@ -98,6 +99,41 @@ class Chess {
                 }
             }
         }
+    }
+
+    override fun onKill(murdered: Piece) {
+        println("$murdered - ${murdered.team} has been killed on ${murdered.position}")
+
+        if(murdered.team == Team.WHITE){
+            whitePiecesAlive.remove(murdered)
+            println("White Pieces Remaining: ${whitePiecesAlive.size} = $whitePiecesAlive")
+        }else{
+            blackPiecesAlive.remove(murdered)
+            println("Black Pieces Remaining: ${blackPiecesAlive.size} = $blackPiecesAlive")
+        }
+
+    }
+
+    override fun onMovement(from: Coordinate, to: Coordinate, piece: Piece) {
+        println("-------------------- MOVEMENT -----------------------------")
+        println("$piece ${piece.team} has been moved from $from to $to")
+        println("-----------------------------------------------------------")
+    }
+
+    override fun onPromotion(pawn: Pawn) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onCheck() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onCheckMate() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onEnPassant() {
+        TODO("Not yet implemented")
     }
 
 
