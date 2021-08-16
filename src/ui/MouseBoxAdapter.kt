@@ -74,9 +74,9 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
 
         val chess = panelBoard.window.chess
 
-        chess.activePiece?.move(chess.board, boxTouched.position)
-        chess.activePiece = null
-        chess.onMovement = false
+        if(chess.activePiece?.position!! != boxTouched.position) {
+            chess.activePiece?.move(chess.board, boxTouched.position)
+        }
 
         chess.activePiece = null
         chess.onMovement = false
