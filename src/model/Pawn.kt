@@ -44,10 +44,10 @@ class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
         } else {
 
             // Check two next boxes for first movement
-            for (i in position.x+1..position.x + 2) {
+            for (i in position.x + 1..position.x + 2) {
                 if (board[i][position.y].piece == null) {
                     pMovements.add(board[i][position.y])
-                }else{
+                } else {
                     // If there is another piece, then stop.
                     break
                 }
@@ -57,24 +57,26 @@ class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
 
         // Check diagonals
 
-        val downRight = if (position.y in 0..6) {
-            checkDiagonal(board, 4)
-        } else {
-            null
-        }
+        if (position.x < 7) {
+            val downRight = if (position.y in 0..6) {
+                checkDiagonal(board, 4)
+            } else {
+                null
+            }
 
-        val downLeft = if (position.y in 1..7) {
-            checkDiagonal(board, 3)
-        } else {
-            null
-        }
+            val downLeft = if (position.y in 1..7) {
+                checkDiagonal(board, 3)
+            } else {
+                null
+            }
 
-        if(downLeft != null){
-            pMovements.add(downLeft)
-        }
+            if (downLeft != null) {
+                pMovements.add(downLeft)
+            }
 
-        if(downRight!=null){
-            pMovements.add(downRight)
+            if (downRight != null) {
+                pMovements.add(downRight)
+            }
         }
 
         return pMovements
@@ -116,24 +118,26 @@ class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
 
         // Check diagonals
 
-        val upRight = if (position.y in 0..6) {
-            checkDiagonal(board, 2)
-        } else {
-            null
-        }
+        if (position.x > 0) {
+            val upRight = if (position.y in 0..6) {
+                checkDiagonal(board, 2)
+            } else {
+                null
+            }
 
-        val upLeft = if (position.y in 1..7) {
-            checkDiagonal(board, 1)
-        } else {
-            null
-        }
+            val upLeft = if (position.y in 1..7) {
+                checkDiagonal(board, 1)
+            } else {
+                null
+            }
 
-        if(upRight != null){
-            pMovements.add(upRight)
-        }
+            if (upRight != null) {
+                pMovements.add(upRight)
+            }
 
-        if(upLeft!=null){
-            pMovements.add(upLeft)
+            if (upLeft != null) {
+                pMovements.add(upLeft)
+            }
         }
 
         return pMovements

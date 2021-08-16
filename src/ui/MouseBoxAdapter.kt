@@ -4,32 +4,21 @@ import model.Box
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 
-class MouseBoxAdapter(val panelBoard : BoardPanel, val boxTouched : Box) : MouseAdapter() {
+class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAdapter() {
 
     override fun mouseClicked(e: MouseEvent?) {
         println(boxTouched)
 
-        disablePreviousActiveBoxes()
         val chess = panelBoard.window.chess
 
-        if(boxTouched.piece != null){
-
-            // Getting all possible movements of the selected piece in the box.
-            val pMovements = boxTouched.piece?.possibleMovements(chess.board)
-
-            // Add all possible movements to active boxes
-            chess.activeBoxes.addAll(pMovements!!)
-
-            // Painting possible movements of the piece in the selected box
-            for(activeBox in chess.activeBoxes){
-                chess.board[activeBox.position.x][activeBox.position.y].color = Box.POSSIBLE_COLOR
+        // If is not on movement
+        if (!chess.onMovement) {
+            if (boxTouched.piece != null) {
+                enableActiveBoxes()
             }
-
-            // Painting the selected box and adding it to active box
-            chess.board[boxTouched.position.x][boxTouched.position.y].color = Box.SELECTED_COLOR
-            chess.activeBoxes.add(boxTouched)
-
-
+            // If it is on movement
+        } else {
+            handleMovement()
         }
 
         // Update UI
@@ -38,17 +27,60 @@ class MouseBoxAdapter(val panelBoard : BoardPanel, val boxTouched : Box) : Mouse
     }
 
     // Putting all previous active boxes to their original color
-    private fun disablePreviousActiveBoxes(){
+    private fun disablePreviousActiveBoxes() {
 
         val chess = panelBoard.window.chess
 
-        for(box in chess.activeBoxes){
-            chess.board[box.position.x][box.position.y].color = box.originalColor
+        for (box in chess.possibleBoxes) {
+            box.color = box.originalColor
         }
 
-        chess.activeBoxes.clear()
+        chess.selectedBox?.color = chess.selectedBox?.originalColor
+
+        chess.possibleBoxes.clear()
 
     }
 
+    // Paint selected box and all possible boxes of the piece.
+    private fun enableActiveBoxes() {
 
+        val chess = panelBoard.window.chess
+
+        // It is on movement and putting the piece that is attempt to move
+        chess.onMovement = true
+        chess.activePiece = boxTouched.piece
+
+        // Getting all possible movements of the selected piece in the box.
+        val pMovements = boxTouched.piece?.possibleMovements(chess.board)
+
+        // Add all possible movements to active boxes
+        chess.possibleBoxes.addAll(pMovements!!)
+
+        // Painting possible movements of the piece in the selected box
+        for (activeBox in chess.possibleBoxes) {
+            activeBox.color = Box.POSSIBLE_COLOR
+        }
+
+        // Painting the selected box
+        boxTouched.color = Box.SELECTED_COLOR
+        chess.selectedBox = boxTouched
+
+    }
+
+    private fun handleMovement() {
+
+        val chess = panelBoard.window.chess
+
+        // If the box selected is a possible movement
+        if (chess.possibleBoxes.contains(boxTouched)) {
+            chess.activePiece?.move(chess.board, boxTouched.position)
+            chess.activePiece = null
+            chess.onMovement = false
+        }
+
+        chess.activePiece = null
+        chess.onMovement = false
+        disablePreviousActiveBoxes()
+
+    }
 }

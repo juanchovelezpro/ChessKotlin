@@ -4,9 +4,9 @@ class Queen(position: Coordinate, team: Team) : Piece(position, team) {
 
     init {
 
-        shape = if(team == Team.WHITE){
+        shape = if (team == Team.WHITE) {
             "\u2655"
-        }else{
+        } else {
             "\u265B"
         }
 
@@ -17,15 +17,15 @@ class Queen(position: Coordinate, team: Team) : Piece(position, team) {
 
         // As the Queen movements are like Rook and Bishop movements, then we can get from those classes
 
-        val rook : Rook
-        val bishop : Bishop
+        val rook: Rook
+        val bishop: Bishop
 
-        if(team == Team.WHITE) {
+        if (team == Team.WHITE) {
             rook = Rook(Coordinate(position.x, position.y), Team.WHITE)
-            bishop = Bishop(Coordinate(position.x,position.y), Team.WHITE)
-        }else{
+            bishop = Bishop(Coordinate(position.x, position.y), Team.WHITE)
+        } else {
             rook = Rook(Coordinate(position.x, position.y), Team.BLACK)
-            bishop = Bishop(Coordinate(position.x,position.y), Team.BLACK)
+            bishop = Bishop(Coordinate(position.x, position.y), Team.BLACK)
         }
 
         pMovements.addAll(rook.possibleMovements(board))

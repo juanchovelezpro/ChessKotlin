@@ -3,7 +3,17 @@ package model
 class Chess {
 
     val board = Array(8) { x -> Array(8) { y -> Box(Coordinate(x, y), null) } }
-    val activeBoxes = ArrayList<Box>()
+
+    val possibleBoxes = mutableListOf<Box>()
+    var selectedBox: Box? = null
+    var onMovement = false
+    var activePiece: Piece? = null
+    var whiteTurn = true
+
+    companion object {
+        val whitePiecesAlive = ArrayList<Piece?>()
+        val blackPiecesAlive = ArrayList<Piece?>()
+    }
 
     init {
         initBoard()
@@ -15,6 +25,15 @@ class Chess {
             for (j in 0..board[0].lastIndex) {
                 putBoxColors(i, j)
                 putPiece(i, j)
+
+                val thePiece = board[i][j].piece
+                if (thePiece != null) {
+                    if (thePiece.team == Team.WHITE) {
+                        whitePiecesAlive.add(thePiece)
+                    } else {
+                        blackPiecesAlive.add(thePiece)
+                    }
+                }
             }
         }
     }

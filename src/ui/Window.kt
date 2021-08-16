@@ -1,6 +1,6 @@
 package ui
 
-import model.*
+import model.Chess
 import java.awt.BorderLayout
 import javax.swing.JFrame
 
@@ -14,12 +14,10 @@ class Window : JFrame() {
         title = "Chess Game"
         layout = BorderLayout()
         defaultCloseOperation = EXIT_ON_CLOSE
-        setSize(650, 650)
+        setSize(500, 500)
         setLocationRelativeTo(null)
 
         chess = Chess()
-
-        chess.board[3][3].piece = Knight(Coordinate(3,3),Team.WHITE)
 
         boardPanel = BoardPanel(this)
 

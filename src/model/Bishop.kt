@@ -18,7 +18,7 @@ class Bishop(position: Coordinate, team: Team) : Piece(position, team) {
 
 
         // Check diagonal up right
-        if (position.x >= 0 && position.y <= 7) {
+        if (position.x > 0 && position.y < 7) {
 
             var x = position.x - 1
             var y = position.y + 1
@@ -39,7 +39,7 @@ class Bishop(position: Coordinate, team: Team) : Piece(position, team) {
         }
 
         // Check diagonal up left
-        if (position.x >= 0 && position.y >= 0) {
+        if (position.x > 0 && position.y > 0) {
 
             var x = position.x - 1
             var y = position.y - 1
@@ -60,12 +60,12 @@ class Bishop(position: Coordinate, team: Team) : Piece(position, team) {
         }
 
         // Check diagonal down left
-        if (position.x <= 7 && position.y >= 0) {
+        if (position.x < 7 && position.y > 0) {
 
             var x = position.x + 1
             var y = position.y - 1
 
-            while (x <= 7 && position.y >= 0) {
+            while (x <= 7 && y >= 0) {
 
                 val box = board[x++][y--]
 
@@ -81,7 +81,7 @@ class Bishop(position: Coordinate, team: Team) : Piece(position, team) {
         }
 
         // Check diagonal down right
-        if (position.x <= 7 && position.y <= 7) {
+        if (position.x < 7 && position.y < 7) {
 
             var x = position.x + 1
             var y = position.y + 1
