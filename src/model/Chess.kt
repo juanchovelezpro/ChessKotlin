@@ -103,6 +103,7 @@ class Chess : ObserverActions {
         }
     }
 
+    // Check and set if a Pawn can be killed En Passant
     private fun checkEnPassant(from: Coordinate, to: Coordinate, pawn: Pawn) {
         if (!pawn.firstMovementDone) {
             if (abs(from.x - to.x) == 2) {
@@ -132,6 +133,7 @@ class Chess : ObserverActions {
     }
 
     override fun onKill(murdered: Piece) {
+        println("------------------------ KILL ---------------------------------------")
         println("$murdered - ${murdered.team} has been killed on ${murdered.position}")
 
         if (murdered.team == Team.WHITE) {
@@ -142,17 +144,50 @@ class Chess : ObserverActions {
             println("Black Pieces Remaining: ${blackPiecesAlive.size} = $blackPiecesAlive")
         }
 
+        println("----------------------------------------------------------------------")
+
     }
 
     override fun onMovement(from: Coordinate, to: Coordinate, piece: Piece) {
 
         if (piece is Pawn) {
+            // Check if a Pawn can be killed En Passant
             checkEnPassant(from, to, piece)
+
+            // Check if the movement is "En Passant"
+            if(to.y != from.y){
+                val enPassantBox = board[to.x][to.y]
+                if(enPassantBox.piece == null){
+                    onEnPassant(from,to, piece)
+                }
+            }
         }
 
         println("-------------------- MOVEMENT -----------------------------")
         println("$piece ${piece.team} has been moved from $from to $to")
         println("-----------------------------------------------------------")
+    }
+
+    override fun onEnPassant(from: Coordinate, to: Coordinate, piece: Piece) {
+        println("""------------------------- SPECIAL KILL "EN PASSANT" --------------------- """)
+        if(piece.team == Team.WHITE){
+            val boxMurder = board[to.x + 1][to.y]
+
+            println("${boxMurder.piece} - ${boxMurder.piece?.team} has been killed with En Passant movement")
+            blackPiecesAlive.remove(boxMurder.piece)
+            boxMurder.piece = null
+            println("Black Pieces Remaining: ${blackPiecesAlive.size} = $blackPiecesAlive")
+
+        }else{
+
+            val boxMurder = board[to.x - 1][to.y]
+
+            println("${boxMurder.piece} - ${boxMurder.piece?.team} has been killed with En Passant movement")
+            whitePiecesAlive.remove(boxMurder.piece)
+            boxMurder.piece = null
+            println("White Pieces Remaining: ${whitePiecesAlive.size} = $whitePiecesAlive")
+        }
+        println("------------------------------------------------------------------------------")
     }
 
     override fun onPromotion(pawn: Pawn) {

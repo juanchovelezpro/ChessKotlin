@@ -172,9 +172,4 @@ class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
         }
     }
 
-    override fun toString(): String {
-        return "$canBeKilledEnPassant"
-    }
-
-
 }
