@@ -1,5 +1,7 @@
 package model
 
+import kotlin.math.abs
+
 class Chess : ObserverActions {
 
     val board = Array(8) { x -> Array(8) { y -> Box(Coordinate(x, y), null) } }
@@ -101,6 +103,34 @@ class Chess : ObserverActions {
         }
     }
 
+    private fun checkEnPassant(from: Coordinate, to: Coordinate, pawn: Pawn) {
+        if (!pawn.firstMovementDone) {
+            if (abs(from.x - to.x) == 2) {
+                pawn.canBeKilledEnPassant = true
+            }
+        }
+    }
+
+    private fun handleActiveEnPassant(){
+        if (whiteTurn) {
+            whitePiecesAlive.forEach { piece ->
+                if (piece is Pawn) {
+                    if (piece.canBeKilledEnPassant) {
+                        piece.canBeKilledEnPassant = false
+                    }
+                }
+            }
+        } else {
+            blackPiecesAlive.forEach { piece ->
+                if (piece is Pawn) {
+                    if (piece.canBeKilledEnPassant) {
+                        piece.canBeKilledEnPassant = false
+                    }
+                }
+            }
+        }
+    }
+
     override fun onKill(murdered: Piece) {
         println("$murdered - ${murdered.team} has been killed on ${murdered.position}")
 
@@ -115,6 +145,10 @@ class Chess : ObserverActions {
     }
 
     override fun onMovement(from: Coordinate, to: Coordinate, piece: Piece) {
+
+        if (piece is Pawn) {
+            checkEnPassant(from, to, piece)
+        }
 
         println("-------------------- MOVEMENT -----------------------------")
         println("$piece ${piece.team} has been moved from $from to $to")
@@ -133,12 +167,16 @@ class Chess : ObserverActions {
         TODO("Not yet implemented")
     }
 
-    override fun onEnPassant() {
-        TODO("Not yet implemented")
-    }
-
     override fun onTurnChanged() {
         whiteTurn = !whiteTurn
+
+        // This is for reset properly the active "can be killed en passant" Pawn
+        handleActiveEnPassant()
+
+        println(whitePiecesAlive)
+        println(blackPiecesAlive)
+
+
     }
 
 }

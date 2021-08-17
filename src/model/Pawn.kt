@@ -2,6 +2,8 @@ package model
 
 class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
 
+    var canBeKilledEnPassant = false
+
     init {
 
         shape = if (team == Team.WHITE) {
@@ -58,6 +60,34 @@ class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
 
         }
 
+
+        // Check En Passant movement
+        if (position.x == 3) {
+            if (position.y > 0) {
+                val left = board[position.x][position.y - 1].piece
+                if (left is Pawn) {
+                    if (left.canBeKilledEnPassant) {
+                        val leftUp = board[position.x - 1][position.y - 1]
+                        if (leftUp.piece == null) {
+                            pMovements.add(leftUp)
+                        }
+                    }
+                }
+            }
+
+            if (position.y < 7) {
+                val right = board[position.x][position.y + 1].piece
+                if (right is Pawn) {
+                    if (right.canBeKilledEnPassant) {
+                        val rightUp = board[position.x - 1][position.y + 1]
+                        if (rightUp.piece == null) {
+                            pMovements.add(rightUp)
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     private fun possibleBlackMovements(board: Array<Array<Box>>, pMovements: ArrayList<Box>) {
@@ -94,6 +124,33 @@ class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
 
         }
 
+        // Check En Passant Movement
+        if (position.x == 4) {
+            if (position.y > 0) {
+                val left = board[position.x][position.y - 1].piece
+                if (left is Pawn) {
+                    if (left.canBeKilledEnPassant) {
+                        val leftDown = board[position.x + 1][position.y - 1]
+                        if (leftDown.piece == null) {
+                            pMovements.add(leftDown)
+                        }
+                    }
+                }
+            }
+
+            if(position.y < 7){
+                val right = board[position.x][position.y + 1].piece
+                if(right is Pawn){
+                    if(right.canBeKilledEnPassant){
+                        val rightDown = board[position.x + 1][position.y + 1]
+                        if(rightDown.piece == null){
+                            pMovements.add(rightDown)
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     private fun addIfItIsPossibleMovement(
@@ -113,6 +170,10 @@ class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
                 pMovements.add(box)
             }
         }
+    }
+
+    override fun toString(): String {
+        return "$canBeKilledEnPassant"
     }
 
 

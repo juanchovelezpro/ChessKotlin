@@ -5,6 +5,7 @@ abstract class Piece(var position: Coordinate, val team: Team, var observer: Obs
     lateinit var shape: String
     var firstMovementDone = false
 
+
     abstract fun possibleMovements(board: Array<Array<Box>>): ArrayList<Box>
 
     fun move(board: Array<Array<Box>>, destination: Coordinate) {
@@ -31,6 +32,8 @@ abstract class Piece(var position: Coordinate, val team: Team, var observer: Obs
             if (!firstMovementDone) {
                 firstMovementDone = true
             }
+
+            observer?.onTurnChanged()
 
         }
     }

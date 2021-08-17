@@ -6,6 +6,5 @@ interface ObserverActions {
     fun onPromotion(pawn: Pawn)
     fun onCheck()
     fun onCheckMate()
-    fun onEnPassant()
     fun onTurnChanged()
 }

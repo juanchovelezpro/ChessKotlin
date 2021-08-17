@@ -73,9 +73,10 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
 
         val chess = panelBoard.window.chess
 
+        // If it is on movement and touch the same box (To avoid a movement on the same box)
+        // This just ignored that action
         if (chess.activePiece?.position!! != boxTouched.position) {
             chess.activePiece?.move(chess.board, boxTouched.position)
-            chess.onTurnChanged()
         }
 
         chess.activePiece = null
