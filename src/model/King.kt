@@ -74,11 +74,11 @@ class King(position: Coordinate, team: Team) : Piece(position, team) {
     private fun addIfItsPossibleMovement(box: Box, pMovements: ArrayList<Box>) {
         if (box.piece == null) {
             pMovements.add(box)
+        } else {
+            if (isEnemy(box.piece!!)) {
+                pMovements.add(box)
+            }
         }
-    }
-
-    private fun isOnAttack(board: Array<Array<Box>>, box: Box): Boolean {
-        return false
     }
 
     private fun verifyCastling(board: Array<Array<Box>>, pMovements: ArrayList<Box>) {
@@ -100,13 +100,11 @@ class King(position: Coordinate, team: Team) : Piece(position, team) {
         val prevThreeBox = board[position.x][position.y - 3]
         val prevRookBox = board[position.x][position.y - 4]
 
-        if(prevBox.piece == null && prevTwoBox.piece == null && prevThreeBox.piece == null){
-            if(prevRookBox.piece != null && !prevRookBox.piece!!.firstMovementDone){
+        if (prevBox.piece == null && prevTwoBox.piece == null && prevThreeBox.piece == null) {
+            if (prevRookBox.piece != null && !prevRookBox.piece!!.firstMovementDone) {
                 pMovements.add(prevTwoBox)
             }
         }
-
-
     }
 
 }

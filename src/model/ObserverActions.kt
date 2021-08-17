@@ -7,4 +7,5 @@ interface ObserverActions {
     fun onCheck()
     fun onCheckMate()
     fun onEnPassant()
+    fun onTurnChanged()
 }

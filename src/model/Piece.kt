@@ -12,11 +12,6 @@ abstract class Piece(var position: Coordinate, val team: Team, var observer: Obs
         val fromBox = board[position.x][position.y]
         val destinationBox = board[destination.x][destination.y]
 
-        // This piece has done the first movement
-        if(!firstMovementDone){
-            firstMovementDone = true
-        }
-
         if (possibleMovements(board).contains(destinationBox)) {
 
             if (destinationBox.piece != null) {
@@ -24,14 +19,18 @@ abstract class Piece(var position: Coordinate, val team: Team, var observer: Obs
                 observer?.onKill(destinationBox.piece!!)
             }
 
+            // Tell observer the movement
+            observer?.onMovement(fromBox.position, destinationBox.position, this)
+
             // Movement action
             fromBox.piece = null
             destinationBox.piece = this
             position = destination
 
-
-            // Tell observer the movement
-            observer?.onMovement(fromBox.position, destinationBox.position, this)
+            // This piece has done the first movement
+            if (!firstMovementDone) {
+                firstMovementDone = true
+            }
 
         }
     }

@@ -1,6 +1,6 @@
 package model
 
-class Chess : ObserverActions{
+class Chess : ObserverActions {
 
     val board = Array(8) { x -> Array(8) { y -> Box(Coordinate(x, y), null) } }
 
@@ -104,10 +104,10 @@ class Chess : ObserverActions{
     override fun onKill(murdered: Piece) {
         println("$murdered - ${murdered.team} has been killed on ${murdered.position}")
 
-        if(murdered.team == Team.WHITE){
+        if (murdered.team == Team.WHITE) {
             whitePiecesAlive.remove(murdered)
             println("White Pieces Remaining: ${whitePiecesAlive.size} = $whitePiecesAlive")
-        }else{
+        } else {
             blackPiecesAlive.remove(murdered)
             println("Black Pieces Remaining: ${blackPiecesAlive.size} = $blackPiecesAlive")
         }
@@ -115,6 +115,7 @@ class Chess : ObserverActions{
     }
 
     override fun onMovement(from: Coordinate, to: Coordinate, piece: Piece) {
+
         println("-------------------- MOVEMENT -----------------------------")
         println("$piece ${piece.team} has been moved from $from to $to")
         println("-----------------------------------------------------------")
@@ -136,5 +137,8 @@ class Chess : ObserverActions{
         TODO("Not yet implemented")
     }
 
+    override fun onTurnChanged() {
+        whiteTurn = !whiteTurn
+    }
 
 }

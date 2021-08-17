@@ -2,9 +2,6 @@ package model
 
 class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
 
-    var firstMoveWasTwo = false
-    var canBeKilledEnPassant = false
-
     init {
 
         shape = if (team == Team.WHITE) {
@@ -14,7 +11,6 @@ class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
         }
 
     }
-
 
     override fun possibleMovements(board: Array<Array<Box>>): ArrayList<Box> {
         val pMovements = ArrayList<Box>()
@@ -97,7 +93,6 @@ class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
             }
 
         }
-
 
     }
 

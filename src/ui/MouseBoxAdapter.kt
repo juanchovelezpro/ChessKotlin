@@ -1,7 +1,6 @@
 package ui
 
 import model.Box
-import model.Team
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 
@@ -74,8 +73,9 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
 
         val chess = panelBoard.window.chess
 
-        if(chess.activePiece?.position!! != boxTouched.position) {
+        if (chess.activePiece?.position!! != boxTouched.position) {
             chess.activePiece?.move(chess.board, boxTouched.position)
+            chess.onTurnChanged()
         }
 
         chess.activePiece = null
@@ -84,16 +84,4 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
 
     }
 
-    // This is for handle "En Passant" and Promotion to Queen
-    private fun handlePawnSpecialMovements() {
-        if (boxTouched.piece?.team == Team.WHITE) {
-
-        } else {
-
-        }
-    }
-
-    private fun handleKingCastlingMovement() {
-
-    }
 }
