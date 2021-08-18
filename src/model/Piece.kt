@@ -7,6 +7,8 @@ abstract class Piece(var position: Coordinate, val team: Team, var observer: Che
 
     abstract fun possibleMovements(): ArrayList<Box>
 
+    abstract fun canKillBoxes(): ArrayList<Box>
+
     override fun move(board: Array<Array<Box>>, destination: Coordinate) {
 
         val fromBox = board[position.x][position.y]

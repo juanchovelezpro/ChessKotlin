@@ -157,6 +157,59 @@ class Pawn(position: Coordinate, team: Team, observer: Chess) : Piece(position, 
 
     }
 
+    override fun canKillBoxes(): ArrayList<Box> {
+
+        return if (team == Team.WHITE) {
+            canKillBoxesWhite()
+        } else {
+            canKillBoxesBlack()
+        }
+
+    }
+
+    private fun canKillBoxesWhite(): ArrayList<Box> {
+        val board = observer.board
+        val canKillBoxes = ArrayList<Box>()
+
+        if (position.x > 0) {
+            // Check diagonal left up
+            if (position.y > 0) {
+                val leftUp = board[position.x - 1][position.y - 1]
+                canKillBoxes.add(leftUp)
+            }
+
+            // Check diagonal right up
+            if (position.y < 7) {
+                val rightUp = board[position.x - 1][position.y + 1]
+                canKillBoxes.add(rightUp)
+            }
+        }
+
+        return canKillBoxes
+    }
+
+    private fun canKillBoxesBlack(): ArrayList<Box> {
+        val board = observer.board
+        val canKillBoxes = ArrayList<Box>()
+
+        if (position.x < 7) {
+            // Check diagonal left down
+            if (position.y > 0) {
+                val leftDown = board[position.x + 1][position.y - 1]
+                canKillBoxes.add(leftDown)
+            }
+
+            // Check diagonal right down
+            if (position.y < 7) {
+                val rightDown = board[position.x + 1][position.y + 1]
+                canKillBoxes.add(rightDown)
+            }
+        }
+
+        return canKillBoxes
+
+    }
+
     // Check and set if a Pawn can be killed En Passant
     private fun checkEnPassant(from: Coordinate, to: Coordinate) {
         if (!firstMovementDone) {

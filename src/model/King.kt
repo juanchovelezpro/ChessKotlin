@@ -72,6 +72,66 @@ class King(position: Coordinate, team: Team, observer: Chess) : Piece(position, 
         return pMovements
     }
 
+    override fun canKillBoxes(): ArrayList<Box> {
+        val canKillBoxes = ArrayList<Box>()
+        val board = observer.board
+
+        if (!firstMovementDone) {
+            verifyCastling(board, canKillBoxes)
+        }
+
+        // Left
+        if (position.y > 0) {
+            val box = board[position.x][position.y - 1]
+            canKillBoxes.add(box)
+        }
+
+        // Right
+        if (position.y < 7) {
+            val box = board[position.x][position.y + 1]
+            canKillBoxes.add(box)
+        }
+
+        // Up
+        if (position.x > 0) {
+            val box = board[position.x - 1][position.y]
+            canKillBoxes.add(box)
+        }
+
+        // Down
+        if (position.x < 7) {
+            val box = board[position.x + 1][position.y]
+            canKillBoxes.add(box)
+        }
+
+        // Diagonal Left Up
+        if (position.x > 0 && position.y > 0) {
+            val box = board[position.x - 1][position.y - 1]
+            canKillBoxes.add(box)
+        }
+
+        // Diagonal Left Down
+        if (position.x < 7 && position.y > 0) {
+            val box = board[position.x + 1][position.y - 1]
+            canKillBoxes.add(box)
+        }
+
+        // Diagonal Right Up
+        if (position.x > 0 && position.y < 7) {
+            val box = board[position.x - 1][position.y + 1]
+            canKillBoxes.add(box)
+        }
+
+        // Diagonal Right Down
+        if (position.x < 7 && position.y < 7) {
+            val box = board[position.x + 1][position.y + 1]
+            canKillBoxes.add(box)
+        }
+
+        return canKillBoxes
+
+    }
+
     fun possibleMovementsWithCheck(): ArrayList<Box> {
         return handleCheck()
     }
@@ -164,11 +224,13 @@ class King(position: Coordinate, team: Team, observer: Chess) : Piece(position, 
         }
 
         val kingPossibleMovements = possibleMovements()
-        val allEnemiesPossibleMovements = ArrayList<Box>()
+        val allEnemiesCanKillMovements = ArrayList<Box>()
 
-        enemiesAlive.forEach { enemy -> allEnemiesPossibleMovements.addAll(enemy.possibleMovements()) }
+        enemiesAlive.forEach { enemy ->
+            allEnemiesCanKillMovements.addAll(enemy.canKillBoxes())
+        }
 
-        kingPossibleMovements.removeAll { allEnemiesPossibleMovements.contains(it) }
+        kingPossibleMovements.removeAll { allEnemiesCanKillMovements.contains(it) }
 
         return kingPossibleMovements
 
