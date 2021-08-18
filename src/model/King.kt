@@ -107,4 +107,14 @@ class King(position: Coordinate, team: Team) : Piece(position, team) {
         }
     }
 
+    fun handleCastlingMovement(from: Coordinate, to: Coordinate) {
+        // Castling left
+        if (from.y - to.y == 2) {
+            observer?.onCastling(to, false)
+            // Castling right
+        } else if (from.y - to.y == -2) {
+            observer?.onCastling(to, true)
+        }
+    }
+
 }

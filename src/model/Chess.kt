@@ -1,8 +1,5 @@
 package model
 
-import javax.print.attribute.standard.Destination
-import kotlin.math.abs
-
 class Chess : ObserverActions {
 
     val board = Array(8) { x -> Array(8) { y -> Box(Coordinate(x, y), null) } }
@@ -12,11 +9,9 @@ class Chess : ObserverActions {
     var onMovement = false
     var activePiece: Piece? = null
     var whiteTurn = true
+    val whitePiecesAlive = ArrayList<Piece?>()
+    val blackPiecesAlive = ArrayList<Piece?>()
 
-    companion object {
-        val whitePiecesAlive = ArrayList<Piece?>()
-        val blackPiecesAlive = ArrayList<Piece?>()
-    }
 
     init {
         initBoard()
@@ -104,32 +99,12 @@ class Chess : ObserverActions {
         }
     }
 
-    // Check and set if a Pawn can be killed En Passant
-    private fun checkEnPassant(from: Coordinate, to: Coordinate, pawn: Pawn) {
-        if (!pawn.firstMovementDone) {
-            if (abs(from.x - to.x) == 2) {
-                pawn.canBeKilledEnPassant = true
-            }
-        }
-    }
-
+    // This is for reset properly the active "can be killed en passant" Pawn
     private fun handleActiveEnPassant() {
         if (whiteTurn) {
-            whitePiecesAlive.forEach { piece ->
-                if (piece is Pawn) {
-                    if (piece.canBeKilledEnPassant) {
-                        piece.canBeKilledEnPassant = false
-                    }
-                }
-            }
+            whitePiecesAlive.forEach { piece -> if (piece is Pawn) piece.disableCanBeKilledEnPassant() }
         } else {
-            blackPiecesAlive.forEach { piece ->
-                if (piece is Pawn) {
-                    if (piece.canBeKilledEnPassant) {
-                        piece.canBeKilledEnPassant = false
-                    }
-                }
-            }
+            blackPiecesAlive.forEach { piece -> if (piece is Pawn) piece.disableCanBeKilledEnPassant() }
         }
     }
 
@@ -153,37 +128,13 @@ class Chess : ObserverActions {
 
         // Check En Passant
         if (piece is Pawn) {
-            // Check if a Pawn can be killed En Passant
-            checkEnPassant(from, to, piece)
-
-            // Check if the movement is "En Passant"
-            if (to.y != from.y) {
-                val enPassantBox = board[to.x][to.y]
-                if (enPassantBox.piece == null) {
-                    onEnPassant(from, to, piece)
-                }
-            }
+            piece.handleEnPassantMovement(from, to, board)
         }
-
 
         // Check Castling
         if (piece is King) {
-
-            // Castling left
-            if (from.y - to.y == 2) {
-
-                onCastling(to, false)
-
-                // Castling right
-            } else if (from.y - to.y == -2) {
-
-                onCastling(to, true)
-
-            }
-
+            piece.handleCastlingMovement(from, to)
         }
-
-
 
         println("-------------------- MOVEMENT -----------------------------")
         println("$piece ${piece.team} has been moved from $from to $to")
@@ -216,9 +167,10 @@ class Chess : ObserverActions {
         TODO("Not yet implemented")
     }
 
-    override fun onCastling(kingDestination: Coordinate,side: Boolean) {
+    // side = true, checks right castling, side = false, checks left castling
+    override fun onCastling(kingDestination: Coordinate, side: Boolean) {
 
-        val rookBox : Box
+        val rookBox: Box
         val rook: Piece?
 
         if (side) {
@@ -230,7 +182,6 @@ class Chess : ObserverActions {
 
             rookBox.piece = null
             board[rook?.position?.x!!][rook.position.y].piece = rook
-
 
 
         } else {
@@ -259,7 +210,6 @@ class Chess : ObserverActions {
     override fun onTurnChanged() {
         whiteTurn = !whiteTurn
 
-        // This is for reset properly the active "can be killed en passant" Pawn
         handleActiveEnPassant()
 
         println(whitePiecesAlive)

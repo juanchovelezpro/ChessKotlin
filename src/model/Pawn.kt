@@ -1,5 +1,7 @@
 package model
 
+import kotlin.math.abs
+
 class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
 
     var canBeKilledEnPassant = false
@@ -138,12 +140,12 @@ class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
                 }
             }
 
-            if(position.y < 7){
+            if (position.y < 7) {
                 val right = board[position.x][position.y + 1].piece
-                if(right is Pawn){
-                    if(right.canBeKilledEnPassant){
+                if (right is Pawn) {
+                    if (right.canBeKilledEnPassant) {
                         val rightDown = board[position.x + 1][position.y + 1]
-                        if(rightDown.piece == null){
+                        if (rightDown.piece == null) {
                             pMovements.add(rightDown)
                         }
                     }
@@ -151,6 +153,32 @@ class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
             }
         }
 
+    }
+
+    // Check and set if a Pawn can be killed En Passant
+    private fun checkEnPassant(from: Coordinate, to: Coordinate) {
+        if (!firstMovementDone) {
+            if (abs(from.x - to.x) == 2) {
+                canBeKilledEnPassant = true
+            }
+        }
+    }
+
+    fun handleEnPassantMovement(from: Coordinate, to: Coordinate, board: Array<Array<Box>>) {
+        checkEnPassant(from, to)
+        // Check if the movement is "En Passant"
+        if (to.y != from.y) {
+            val enPassantBox = board[to.x][to.y]
+            if (enPassantBox.piece == null) {
+                observer?.onEnPassant(from, to, this)
+            }
+        }
+    }
+
+    fun disableCanBeKilledEnPassant() {
+        if (canBeKilledEnPassant) {
+            canBeKilledEnPassant = false
+        }
     }
 
     private fun addIfItIsPossibleMovement(
