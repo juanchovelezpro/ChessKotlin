@@ -38,11 +38,8 @@ abstract class Piece(var position: Coordinate, val team: Team, var observer: Obs
         }
     }
 
-    fun isEnemy(piece: Piece): Boolean {
-        return team != piece.team
-    }
+    fun isEnemy(piece: Piece) = team != piece.team
 
-    override fun toString(): String {
-        return shape
-    }
+    override fun toString() = shape
+
 }

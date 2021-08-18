@@ -83,7 +83,7 @@ class King(position: Coordinate, team: Team) : Piece(position, team) {
 
     private fun verifyCastling(board: Array<Array<Box>>, pMovements: ArrayList<Box>) {
 
-        // Verify short castling
+        // Verify short castling (Right Castling)
         val nextBox = board[position.x][position.y + 1]
         val nextTwoBox = board[position.x][position.y + 2]
         val rookBox = board[position.x][position.y + 3]
@@ -94,7 +94,7 @@ class King(position: Coordinate, team: Team) : Piece(position, team) {
             }
         }
 
-        // Verify long castling
+        // Verify long castling (Left Castling)
         val prevBox = board[position.x][position.y - 1]
         val prevTwoBox = board[position.x][position.y - 2]
         val prevThreeBox = board[position.x][position.y - 3]
