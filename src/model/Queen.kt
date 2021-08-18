@@ -1,6 +1,6 @@
 package model
 
-class Queen(position: Coordinate, team: Team) : Piece(position, team) {
+class Queen(position: Coordinate, team: Team, observer: Chess) : Piece(position, team, observer) {
 
     init {
 
@@ -12,7 +12,7 @@ class Queen(position: Coordinate, team: Team) : Piece(position, team) {
 
     }
 
-    override fun possibleMovements(board: Array<Array<Box>>): ArrayList<Box> {
+    override fun possibleMovements(): ArrayList<Box> {
         val pMovements = ArrayList<Box>()
 
         // As the Queen movements are like Rook and Bishop movements, then we can get from those classes
@@ -21,15 +21,15 @@ class Queen(position: Coordinate, team: Team) : Piece(position, team) {
         val bishop: Bishop
 
         if (team == Team.WHITE) {
-            rook = Rook(Coordinate(position.x, position.y), Team.WHITE)
-            bishop = Bishop(Coordinate(position.x, position.y), Team.WHITE)
+            rook = Rook(Coordinate(position.x, position.y), Team.WHITE, observer)
+            bishop = Bishop(Coordinate(position.x, position.y), Team.WHITE, observer)
         } else {
-            rook = Rook(Coordinate(position.x, position.y), Team.BLACK)
-            bishop = Bishop(Coordinate(position.x, position.y), Team.BLACK)
+            rook = Rook(Coordinate(position.x, position.y), Team.BLACK, observer)
+            bishop = Bishop(Coordinate(position.x, position.y), Team.BLACK, observer)
         }
 
-        pMovements.addAll(rook.possibleMovements(board))
-        pMovements.addAll(bishop.possibleMovements(board))
+        pMovements.addAll(rook.possibleMovements())
+        pMovements.addAll(bishop.possibleMovements())
 
 
         return pMovements

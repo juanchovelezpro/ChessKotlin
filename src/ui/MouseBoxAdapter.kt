@@ -1,6 +1,8 @@
 package ui
 
 import model.Box
+import model.King
+import model.Piece
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 
@@ -53,10 +55,11 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
         chess.activePiece = boxTouched.piece
 
         // Getting all possible movements of the selected piece in the box.
-        val pMovements = boxTouched.piece?.possibleMovements(chess.board)
+
+        val pMovements = getPossibleMovements(chess.activePiece)
 
         // Add all possible movements to active boxes
-        chess.possibleBoxes.addAll(pMovements!!)
+        chess.possibleBoxes.addAll(pMovements)
 
         // Painting possible movements of the piece in the selected box
         for (activeBox in chess.possibleBoxes) {
@@ -69,6 +72,14 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
 
     }
 
+    private fun getPossibleMovements(piece: Piece?): ArrayList<Box> {
+        return if (piece is King) {
+            piece.possibleMovementsWithCheck()
+        } else {
+            piece?.possibleMovements()!!
+        }
+    }
+
     private fun handleMovement() {
 
         val chess = panelBoard.window.chess
@@ -76,7 +87,11 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
         // If it is on movement and touch the same box (To avoid a movement on the same box)
         // This just ignored that action
         if (chess.activePiece?.position!! != boxTouched.position) {
-            chess.activePiece?.move(chess.board, boxTouched.position)
+
+            // Check if the box touched is a possible movement, if so, then move the piece
+            if (chess.possibleBoxes.contains(boxTouched)) {
+                chess.activePiece?.move(chess.board, boxTouched.position)
+            }
         }
 
         chess.activePiece = null

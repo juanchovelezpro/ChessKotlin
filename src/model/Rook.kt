@@ -1,6 +1,6 @@
 package model
 
-class Rook(position: Coordinate, team: Team) : Piece(position, team) {
+class Rook(position: Coordinate, team: Team, observer: Chess) : Piece(position, team, observer) {
 
     init {
 
@@ -12,8 +12,9 @@ class Rook(position: Coordinate, team: Team) : Piece(position, team) {
 
     }
 
-    override fun possibleMovements(board: Array<Array<Box>>): ArrayList<Box> {
+    override fun possibleMovements(): ArrayList<Box> {
         val pMovements = ArrayList<Box>()
+        val board = observer.board
 
         // Check movements -- left
         if (position.y > 0) {

@@ -27,12 +27,6 @@ class BoardPanel(val window: Window) : JPanel() {
 
         updateBoard(boardChess)
 
-        for (i in 0..board.lastIndex) {
-            for (j in 0..board[0].lastIndex) {
-                add(board[i][j])
-            }
-        }
-
         revalidate()
         repaint()
     }
@@ -53,6 +47,8 @@ class BoardPanel(val window: Window) : JPanel() {
                 board[i][j].addMouseListener(MouseBoxAdapter(this, boardChess[i][j]))
 
                 board[i][j].isOpaque = true
+
+                add(board[i][j])
 
             }
         }

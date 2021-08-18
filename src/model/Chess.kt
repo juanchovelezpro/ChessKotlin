@@ -1,6 +1,6 @@
 package model
 
-class Chess : ObserverActions {
+class Chess : ChessActions {
 
     val board = Array(8) { x -> Array(8) { y -> Box(Coordinate(x, y), null) } }
 
@@ -9,8 +9,8 @@ class Chess : ObserverActions {
     var onMovement = false
     var activePiece: Piece? = null
     var whiteTurn = true
-    val whitePiecesAlive = ArrayList<Piece?>()
-    val blackPiecesAlive = ArrayList<Piece?>()
+    val whitePiecesAlive = ArrayList<Piece>()
+    val blackPiecesAlive = ArrayList<Piece>()
 
 
     init {
@@ -24,21 +24,24 @@ class Chess : ObserverActions {
                 putBoxColors(i, j)
                 putPiece(i, j)
 
-                val thePiece = board[i][j].piece
-                if (thePiece != null) {
-                    thePiece.observer = this
-                    if (thePiece.team == Team.WHITE) {
-                        whitePiecesAlive.add(thePiece)
-                    } else {
-                        blackPiecesAlive.add(thePiece)
-                    }
-                }
+                val piece = board[i][j].piece
+                addAlivePiece(piece)
+
+            }
+        }
+    }
+
+    private fun addAlivePiece(piece: Piece?) {
+        if (piece != null) {
+            if (piece.team == Team.WHITE) {
+                whitePiecesAlive.add(piece)
+            } else {
+                blackPiecesAlive.add(piece)
             }
         }
     }
 
     private fun putPiece(i: Int, j: Int) {
-
 
         board[i][j].piece = when (i) {
 
@@ -48,12 +51,12 @@ class Chess : ObserverActions {
             }
 
             1 -> {
-                Pawn(Coordinate(i, j), Team.BLACK)
+                Pawn(Coordinate(i, j), Team.BLACK, this)
             }
 
             // Putting White Pieces
             6 -> {
-                Pawn(Coordinate(i, j), Team.WHITE)
+                Pawn(Coordinate(i, j), Team.WHITE, this)
             }
 
             7 -> {
@@ -68,11 +71,11 @@ class Chess : ObserverActions {
 
     private fun putPiece(i: Int, j: Int, team: Team): Piece {
         return when (j) {
-            1, 6 -> Knight(Coordinate(i, j), team)
-            3 -> Queen(Coordinate(i, j), team)
-            4 -> King(Coordinate(i, j), team)
-            2, 5 -> Bishop(Coordinate(i, j), team)
-            else -> Rook(Coordinate(i, j), team)
+            1, 6 -> Knight(Coordinate(i, j), team, this)
+            3 -> Queen(Coordinate(i, j), team, this)
+            4 -> King(Coordinate(i, j), team, this)
+            2, 5 -> Bishop(Coordinate(i, j), team, this)
+            else -> Rook(Coordinate(i, j), team, this)
         }
     }
 
@@ -126,77 +129,15 @@ class Chess : ObserverActions {
 
     override fun onMovement(from: Coordinate, to: Coordinate, piece: Piece) {
 
-        // Check En Passant
-        if (piece is Pawn) {
-            piece.handleEnPassantMovement(from, to, board)
-        }
-
-        // Check Castling
-        if (piece is King) {
-            piece.handleCastlingMovement(from, to)
-        }
+        piece.handleMovement(from, to)
 
         println("-------------------- MOVEMENT -----------------------------")
         println("$piece ${piece.team} has been moved from $from to $to")
         println("-----------------------------------------------------------")
     }
 
-    override fun onEnPassant(from: Coordinate, to: Coordinate, piece: Piece) {
-        println("""------------------------- SPECIAL KILL "EN PASSANT" --------------------- """)
-        if (piece.team == Team.WHITE) {
-            val boxMurder = board[to.x + 1][to.y]
-
-            println("${boxMurder.piece} - ${boxMurder.piece?.team} has been killed with En Passant movement")
-            blackPiecesAlive.remove(boxMurder.piece)
-            boxMurder.piece = null
-            println("Black Pieces Remaining: ${blackPiecesAlive.size} = $blackPiecesAlive")
-
-        } else {
-
-            val boxMurder = board[to.x - 1][to.y]
-
-            println("${boxMurder.piece} - ${boxMurder.piece?.team} has been killed with En Passant movement")
-            whitePiecesAlive.remove(boxMurder.piece)
-            boxMurder.piece = null
-            println("White Pieces Remaining: ${whitePiecesAlive.size} = $whitePiecesAlive")
-        }
-        println("------------------------------------------------------------------------------")
-    }
-
     override fun onPromotion(pawn: Pawn) {
         TODO("Not yet implemented")
-    }
-
-    // side = true, checks right castling, side = false, checks left castling
-    override fun onCastling(kingDestination: Coordinate, side: Boolean) {
-
-        val rookBox: Box
-        val rook: Piece?
-
-        if (side) {
-
-            rookBox = board[kingDestination.x][kingDestination.y + 1]
-            rook = rookBox.piece
-
-            rook?.position?.y = kingDestination.y - 1
-
-            rookBox.piece = null
-            board[rook?.position?.x!!][rook.position.y].piece = rook
-
-
-        } else {
-
-            rookBox = board[kingDestination.x][kingDestination.y - 2]
-            rook = rookBox.piece
-
-            rook?.position?.y = kingDestination.y + 1
-
-            rookBox.piece = null
-            board[rook?.position?.x!!][rook.position.y].piece = rook
-
-        }
-
-
     }
 
     override fun onCheck() {

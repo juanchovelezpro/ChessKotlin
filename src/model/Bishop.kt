@@ -1,6 +1,6 @@
 package model
 
-class Bishop(position: Coordinate, team: Team) : Piece(position, team) {
+class Bishop(position: Coordinate, team: Team, observer: Chess) : Piece(position, team, observer) {
 
     init {
 
@@ -13,9 +13,9 @@ class Bishop(position: Coordinate, team: Team) : Piece(position, team) {
 
     }
 
-    override fun possibleMovements(board: Array<Array<Box>>): ArrayList<Box> {
+    override fun possibleMovements(): ArrayList<Box> {
         val pMovements = ArrayList<Box>()
-
+        val board = observer.board
 
         // Check diagonal up right
         if (position.x > 0 && position.y < 7) {

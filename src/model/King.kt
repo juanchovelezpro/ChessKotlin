@@ -1,6 +1,6 @@
 package model
 
-class King(position: Coordinate, team: Team) : Piece(position, team) {
+class King(position: Coordinate, team: Team, observer: Chess) : Piece(position, team, observer) {
 
     init {
 
@@ -12,8 +12,9 @@ class King(position: Coordinate, team: Team) : Piece(position, team) {
 
     }
 
-    override fun possibleMovements(board: Array<Array<Box>>): ArrayList<Box> {
+    override fun possibleMovements(): ArrayList<Box> {
         val pMovements = ArrayList<Box>()
+        val board = observer.board
 
         if (!firstMovementDone) {
             verifyCastling(board, pMovements)
@@ -71,6 +72,10 @@ class King(position: Coordinate, team: Team) : Piece(position, team) {
         return pMovements
     }
 
+    fun possibleMovementsWithCheck(): ArrayList<Box> {
+        return handleCheck()
+    }
+
     private fun addIfItsPossibleMovement(box: Box, pMovements: ArrayList<Box>) {
         if (box.piece == null) {
             pMovements.add(box)
@@ -107,14 +112,71 @@ class King(position: Coordinate, team: Team) : Piece(position, team) {
         }
     }
 
-    fun handleCastlingMovement(from: Coordinate, to: Coordinate) {
+    private fun handleCastlingMovement(from: Coordinate, to: Coordinate) {
         // Castling left
         if (from.y - to.y == 2) {
-            observer?.onCastling(to, false)
+            onCastling(to, false)
             // Castling right
         } else if (from.y - to.y == -2) {
-            observer?.onCastling(to, true)
+            onCastling(to, true)
         }
     }
+
+    // side = true, checks right castling, side = false, checks left castling
+    private fun onCastling(kingDestination: Coordinate, side: Boolean) {
+
+        val board = observer.board
+
+        val rookBox: Box
+        val rook: Piece?
+
+        if (side) {
+
+            rookBox = board[kingDestination.x][kingDestination.y + 1]
+            rook = rookBox.piece
+
+            rook?.position?.y = kingDestination.y - 1
+
+            rookBox.piece = null
+            board[rook?.position?.x!!][rook.position.y].piece = rook
+
+
+        } else {
+
+            rookBox = board[kingDestination.x][kingDestination.y - 2]
+            rook = rookBox.piece
+
+            rook?.position?.y = kingDestination.y + 1
+
+            rookBox.piece = null
+            board[rook?.position?.x!!][rook.position.y].piece = rook
+
+        }
+
+    }
+
+    private fun handleCheck(): ArrayList<Box> {
+
+        val enemiesAlive = if (team == Team.WHITE) {
+            observer.blackPiecesAlive
+        } else {
+            observer.whitePiecesAlive
+        }
+
+        val kingPossibleMovements = possibleMovements()
+        val allEnemiesPossibleMovements = ArrayList<Box>()
+
+        enemiesAlive.forEach { enemy -> allEnemiesPossibleMovements.addAll(enemy.possibleMovements()) }
+
+        kingPossibleMovements.removeAll { allEnemiesPossibleMovements.contains(it) }
+
+        return kingPossibleMovements
+
+    }
+
+    override fun handleMovement(from: Coordinate, to: Coordinate) {
+        handleCastlingMovement(from, to)
+    }
+
 
 }

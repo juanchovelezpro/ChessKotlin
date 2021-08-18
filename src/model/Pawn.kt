@@ -2,7 +2,7 @@ package model
 
 import kotlin.math.abs
 
-class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
+class Pawn(position: Coordinate, team: Team, observer: Chess) : Piece(position, team, observer) {
 
     var canBeKilledEnPassant = false
 
@@ -14,10 +14,12 @@ class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
             "\u265F"
         }
 
+
     }
 
-    override fun possibleMovements(board: Array<Array<Box>>): ArrayList<Box> {
+    override fun possibleMovements(): ArrayList<Box> {
         val pMovements = ArrayList<Box>()
+        val board = observer.board
 
         if (team == Team.WHITE) {
             possibleWhiteMovements(board, pMovements)
@@ -164,15 +166,45 @@ class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
         }
     }
 
-    fun handleEnPassantMovement(from: Coordinate, to: Coordinate, board: Array<Array<Box>>) {
+    private fun handleEnPassantMovement(from: Coordinate, to: Coordinate) {
+        val board = observer.board
         checkEnPassant(from, to)
         // Check if the movement is "En Passant"
         if (to.y != from.y) {
             val enPassantBox = board[to.x][to.y]
             if (enPassantBox.piece == null) {
-                observer?.onEnPassant(from, to, this)
+                onEnPassant(to)
             }
         }
+    }
+
+    private fun onEnPassant(to: Coordinate) {
+
+        val board = observer.board
+
+        println("""------------------------- SPECIAL KILL "EN PASSANT" --------------------- """)
+        if (team == Team.WHITE) {
+            val boxMurder = board[to.x + 1][to.y]
+
+            println("${boxMurder.piece} - ${boxMurder.piece?.team} has been killed with En Passant movement")
+            observer.blackPiecesAlive.remove(boxMurder.piece)
+            boxMurder.piece = null
+            println("Black Pieces Remaining: ${observer.blackPiecesAlive.size} = ${observer.blackPiecesAlive}")
+
+        } else {
+
+            val boxMurder = board[to.x - 1][to.y]
+
+            println("${boxMurder.piece} - ${boxMurder.piece?.team} has been killed with En Passant movement")
+            observer.whitePiecesAlive.remove(boxMurder.piece)
+            boxMurder.piece = null
+            println("White Pieces Remaining: ${observer.whitePiecesAlive.size} = ${observer.whitePiecesAlive}")
+        }
+        println("------------------------------------------------------------------------------")
+    }
+
+    override fun handleMovement(from: Coordinate, to: Coordinate) {
+        handleEnPassantMovement(from, to)
     }
 
     fun disableCanBeKilledEnPassant() {
@@ -201,3 +233,5 @@ class Pawn(position: Coordinate, team: Team) : Piece(position, team) {
     }
 
 }
+
+
