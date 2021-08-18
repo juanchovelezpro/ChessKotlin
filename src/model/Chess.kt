@@ -1,5 +1,6 @@
 package model
 
+import javax.print.attribute.standard.Destination
 import kotlin.math.abs
 
 class Chess : ObserverActions {
@@ -112,7 +113,7 @@ class Chess : ObserverActions {
         }
     }
 
-    private fun handleActiveEnPassant(){
+    private fun handleActiveEnPassant() {
         if (whiteTurn) {
             whitePiecesAlive.forEach { piece ->
                 if (piece is Pawn) {
@@ -150,18 +151,39 @@ class Chess : ObserverActions {
 
     override fun onMovement(from: Coordinate, to: Coordinate, piece: Piece) {
 
+        // Check En Passant
         if (piece is Pawn) {
             // Check if a Pawn can be killed En Passant
             checkEnPassant(from, to, piece)
 
             // Check if the movement is "En Passant"
-            if(to.y != from.y){
+            if (to.y != from.y) {
                 val enPassantBox = board[to.x][to.y]
-                if(enPassantBox.piece == null){
-                    onEnPassant(from,to, piece)
+                if (enPassantBox.piece == null) {
+                    onEnPassant(from, to, piece)
                 }
             }
         }
+
+
+        // Check Castling
+        if (piece is King) {
+
+            // Castling left
+            if (from.y - to.y == 2) {
+
+                onCastling(to, false)
+
+                // Castling right
+            } else if (from.y - to.y == -2) {
+
+                onCastling(to, true)
+
+            }
+
+        }
+
+
 
         println("-------------------- MOVEMENT -----------------------------")
         println("$piece ${piece.team} has been moved from $from to $to")
@@ -170,7 +192,7 @@ class Chess : ObserverActions {
 
     override fun onEnPassant(from: Coordinate, to: Coordinate, piece: Piece) {
         println("""------------------------- SPECIAL KILL "EN PASSANT" --------------------- """)
-        if(piece.team == Team.WHITE){
+        if (piece.team == Team.WHITE) {
             val boxMurder = board[to.x + 1][to.y]
 
             println("${boxMurder.piece} - ${boxMurder.piece?.team} has been killed with En Passant movement")
@@ -178,7 +200,7 @@ class Chess : ObserverActions {
             boxMurder.piece = null
             println("Black Pieces Remaining: ${blackPiecesAlive.size} = $blackPiecesAlive")
 
-        }else{
+        } else {
 
             val boxMurder = board[to.x - 1][to.y]
 
@@ -192,6 +214,38 @@ class Chess : ObserverActions {
 
     override fun onPromotion(pawn: Pawn) {
         TODO("Not yet implemented")
+    }
+
+    override fun onCastling(kingDestination: Coordinate,side: Boolean) {
+
+        val rookBox : Box
+        val rook: Piece?
+
+        if (side) {
+
+            rookBox = board[kingDestination.x][kingDestination.y + 1]
+            rook = rookBox.piece
+
+            rook?.position?.y = kingDestination.y - 1
+
+            rookBox.piece = null
+            board[rook?.position?.x!!][rook.position.y].piece = rook
+
+
+
+        } else {
+
+            rookBox = board[kingDestination.x][kingDestination.y - 2]
+            rook = rookBox.piece
+
+            rook?.position?.y = kingDestination.y + 1
+
+            rookBox.piece = null
+            board[rook?.position?.x!!][rook.position.y].piece = rook
+
+        }
+
+
     }
 
     override fun onCheck() {
@@ -210,7 +264,6 @@ class Chess : ObserverActions {
 
         println(whitePiecesAlive)
         println(blackPiecesAlive)
-
 
     }
 
