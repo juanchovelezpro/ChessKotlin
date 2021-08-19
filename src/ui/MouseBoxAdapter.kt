@@ -2,6 +2,7 @@ package ui
 
 import model.Box
 import model.Piece
+import model.Team
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 
@@ -13,11 +14,16 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
         println("-----------------------------")
 
         val chess = panelBoard.window.chess
+        val pieceTouched = boxTouched.piece
 
         // If is not on movement
         if (!chess.onMovement) {
-            if (boxTouched.piece != null) {
-                enableActiveBoxes()
+            if (pieceTouched != null) {
+
+                // Handle turn
+                if (pieceTouched.team == Team.WHITE && chess.whiteTurn || pieceTouched.team == Team.BLACK && !chess.whiteTurn) {
+                    enableActiveBoxes()
+                }
             }
             // If it is on movement
         } else {
