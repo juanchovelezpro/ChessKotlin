@@ -29,6 +29,7 @@ abstract class Piece(var position: Coordinate, val team: Team, var observer: Che
 
     }
 
+    // An auxiliar method to check all the "possible movements" of the current piece are valid.
     private fun checkKingInDanger(
         pMovements: ArrayList<Box>, pMovementsToVerify: ArrayList<Box>, myKingBox: Box, enemiesAlive: ArrayList<Piece>
     ): ArrayList<Box> {
@@ -50,6 +51,14 @@ abstract class Piece(var position: Coordinate, val team: Team, var observer: Che
             fromBox.piece = null
             destBox.piece = this
 
+            // Simulate the kill
+            if (team == Team.WHITE) {
+                observer.blackPiecesAlive.remove(pieceInDest)
+            } else {
+                observer.whitePiecesAlive.remove(pieceInDest)
+            }
+
+
             val allEnemiesCanKillMovements = ArrayList<Box>()
 
             // Add all movements that enemies can attack
@@ -67,6 +76,17 @@ abstract class Piece(var position: Coordinate, val team: Team, var observer: Che
             pMovementsToVerify.remove(destBox)
 
             // Put all things in their original places.
+
+            // First revive the killed piece
+            if (pieceInDest != null) {
+                if (team == Team.WHITE) {
+                    observer.blackPiecesAlive.add(pieceInDest)
+                } else {
+                    observer.whitePiecesAlive.add(pieceInDest)
+                }
+            }
+
+            // Then put the pieces in their original places
             destBox.piece = pieceInDest
             fromBox.piece = this
 
