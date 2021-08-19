@@ -1,6 +1,6 @@
 package ui
 
-import model.Box
+import model.*
 import java.awt.Font
 import java.awt.GridLayout
 import javax.swing.JLabel
@@ -8,7 +8,7 @@ import javax.swing.JPanel
 import javax.swing.SwingConstants
 import javax.swing.border.BevelBorder
 
-class BoardPanel(val window: Window) : JPanel() {
+class BoardPanel(val window: Window) : JPanel(), ChessActions {
 
     lateinit var board: Array<Array<JLabel>>
 
@@ -18,6 +18,7 @@ class BoardPanel(val window: Window) : JPanel() {
         layout = GridLayout(8, 8)
 
         drawBoard(window.chess.board)
+
 
     }
 
@@ -52,6 +53,34 @@ class BoardPanel(val window: Window) : JPanel() {
 
             }
         }
+    }
+
+    override fun onKill(murdered: Piece) {
+
+    }
+
+    override fun onMovement(from: Coordinate, to: Coordinate, piece: Piece) {
+
+    }
+
+    override fun onPromotion(pawn: Pawn) {
+
+    }
+
+    override fun onCheck(team: Team) {
+
+    }
+
+    override fun onCheckMate(winner: Team, loser: Team) {
+
+    }
+
+    override fun onTie() {
+
+    }
+
+    override fun onTurnChanged() {
+
     }
 
 

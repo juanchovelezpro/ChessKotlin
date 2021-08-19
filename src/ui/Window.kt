@@ -21,6 +21,8 @@ class Window : JFrame() {
 
         boardPanel = BoardPanel(this)
 
+        chess.observer = boardPanel
+
         add(boardPanel, BorderLayout.CENTER)
 
         isUndecorated = true

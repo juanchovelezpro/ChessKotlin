@@ -1,6 +1,6 @@
 package model
 
-class Chess : ChessActions {
+class Chess() : ChessActions {
 
     val board = Array(8) { x -> Array(8) { y -> Box(Coordinate(x, y), null) } }
 
@@ -11,6 +11,9 @@ class Chess : ChessActions {
     var whiteTurn = true
     val whitePiecesAlive = ArrayList<Piece>()
     val blackPiecesAlive = ArrayList<Piece>()
+    var whiteInCheck = false
+    var blackInCheck = false
+    var observer: ChessActions? = null
     lateinit var blackKing: King
     lateinit var whiteKing: King
 
@@ -106,21 +109,6 @@ class Chess : ChessActions {
         }
     }
 
-    fun boardCopy(): Array<Array<Box>> {
-
-        val boardCopy = Array(8) { x -> Array(8) { y -> Box(Coordinate(x, y), null) } }
-
-        for (i in 0..boardCopy.lastIndex) {
-            for (j in 0..boardCopy[0].lastIndex) {
-                val boxy = board[i][j]
-                boardCopy[i][j] = boxy
-            }
-        }
-
-        return boardCopy
-
-    }
-
     // This is for reset properly the active "can be killed en passant" Pawn
     private fun handleActiveEnPassant() {
         if (whiteTurn) {
@@ -159,12 +147,95 @@ class Chess : ChessActions {
         TODO("Not yet implemented")
     }
 
-    override fun onCheck() {
-        TODO("Not yet implemented")
+    override fun onCheck(team: Team) {
+        println("-------------------- CHECK --------------------")
+        println("Team -> $team is in check!!!!")
+        println("-----------------------------------------------")
     }
 
-    override fun onCheckMate() {
-        TODO("Not yet implemented")
+    override fun onCheckMate(winner: Team, loser: Team) {
+        println("------------ ¡¡¡¡ CHECKMATE !!!! -------------")
+        println("Winner: $winner ----------- Loser: $loser")
+        println("----------------------------------------------")
+    }
+
+    override fun onTie() {
+        println("Nobody wins...")
+    }
+
+    private fun verifyCheck(king: King) {
+        val enemiesPossibleMovements = ArrayList<Box>()
+        val myTeam = king.team
+        val boxKing = board[king.position.x][king.position.y]
+
+        if (myTeam == Team.WHITE) {
+
+            blackPiecesAlive.forEach { enemy ->
+                enemiesPossibleMovements.addAll(enemy.possibleMovements())
+            }
+
+            whiteInCheck = enemiesPossibleMovements.contains(boxKing)
+
+            val whitePossibleMovements = whitePossibleMovements()
+
+            if (whiteInCheck) {
+                onCheck(Team.WHITE)
+                if (whitePossibleMovements.isEmpty()) {
+                    onCheckMate(Team.BLACK, Team.WHITE)
+                }
+            } else {
+                if (whitePossibleMovements.isEmpty()) {
+                    onTie()
+                }
+            }
+
+
+        } else {
+
+            whitePiecesAlive.forEach { enemy ->
+                enemiesPossibleMovements.addAll(enemy.possibleMovements())
+            }
+
+            blackInCheck = enemiesPossibleMovements.contains(boxKing)
+
+            val blackPossibleMovements = blackPossibleMovements()
+
+            if (blackInCheck) {
+                onCheck(Team.BLACK)
+                if (blackPossibleMovements.isEmpty()) {
+                    onCheckMate(Team.WHITE, Team.BLACK)
+                }
+            } else {
+                if (blackPossibleMovements.isEmpty()) {
+                    onTie()
+                }
+            }
+
+        }
+    }
+
+    private fun whitePossibleMovements(): ArrayList<Box> {
+
+        val movements = ArrayList<Box>()
+
+        whitePiecesAlive.forEach { white ->
+            movements.addAll(white.possibleMovementsWithCheck())
+        }
+
+        return movements
+
+    }
+
+    private fun blackPossibleMovements(): ArrayList<Box> {
+
+        val movements = ArrayList<Box>()
+
+        blackPiecesAlive.forEach { black ->
+            movements.addAll(black.possibleMovementsWithCheck())
+        }
+
+        return movements
+
     }
 
     override fun onTurnChanged() {
@@ -172,11 +243,16 @@ class Chess : ChessActions {
 
         handleActiveEnPassant()
 
-        println("$blackKing ${blackKing.position.x} ${blackKing.position.y}")
-        println("$whiteKing ${whiteKing.position.x} ${whiteKing.position.y}")
+        if (whiteTurn) {
+            verifyCheck(whiteKing)
+        } else {
+            verifyCheck(blackKing)
+        }
 
         println(whitePiecesAlive)
         println(blackPiecesAlive)
+
+        observer?.onTurnChanged()
 
     }
 

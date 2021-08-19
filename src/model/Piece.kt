@@ -29,7 +29,7 @@ abstract class Piece(var position: Coordinate, val team: Team, var observer: Che
 
     }
 
-    // An auxiliar method to check all the "possible movements" of the current piece are valid.
+    // An auxiliary method to check all the "possible movements" of the current piece if are valid.
     private fun checkKingInDanger(
         pMovements: ArrayList<Box>, pMovementsToVerify: ArrayList<Box>, myKingBox: Box, enemiesAlive: ArrayList<Piece>
     ): ArrayList<Box> {
@@ -38,7 +38,7 @@ abstract class Piece(var position: Coordinate, val team: Team, var observer: Che
             return pMovements
         } else {
             // A copy to not alter the original board.
-            val board = observer.boardCopy()
+            val board = observer.board
             val destination = pMovementsToVerify[0].position
 
             val fromBox = board[position.x][position.y]
@@ -57,7 +57,6 @@ abstract class Piece(var position: Coordinate, val team: Team, var observer: Che
             } else {
                 observer.whitePiecesAlive.remove(pieceInDest)
             }
-
 
             val allEnemiesCanKillMovements = ArrayList<Box>()
 
