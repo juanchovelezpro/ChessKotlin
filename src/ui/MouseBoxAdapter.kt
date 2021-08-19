@@ -1,7 +1,6 @@
 package ui
 
 import model.Box
-import model.King
 import model.Piece
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
@@ -73,11 +72,7 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
     }
 
     private fun getPossibleMovements(piece: Piece?): ArrayList<Box> {
-        return if (piece is King) {
-            piece.possibleMovementsWithCheck()
-        } else {
-            piece?.possibleMovements()!!
-        }
+        return piece?.possibleMovementsWithCheck()!!
     }
 
     private fun handleMovement() {

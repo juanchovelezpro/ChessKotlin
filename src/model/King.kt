@@ -16,6 +16,7 @@ class King(position: Coordinate, team: Team, observer: Chess) : Piece(position, 
         val pMovements = ArrayList<Box>()
         val board = observer.board
 
+
         if (!firstMovementDone) {
             verifyCastling(board, pMovements)
         }
@@ -132,7 +133,7 @@ class King(position: Coordinate, team: Team, observer: Chess) : Piece(position, 
 
     }
 
-    fun possibleMovementsWithCheck(): ArrayList<Box> {
+    override fun possibleMovementsWithCheck(): ArrayList<Box> {
         return handleCheck()
     }
 

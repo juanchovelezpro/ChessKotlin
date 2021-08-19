@@ -11,7 +11,8 @@ class Chess : ChessActions {
     var whiteTurn = true
     val whitePiecesAlive = ArrayList<Piece>()
     val blackPiecesAlive = ArrayList<Piece>()
-
+    lateinit var blackKing: King
+    lateinit var whiteKing: King
 
     init {
         initBoard()
@@ -29,6 +30,9 @@ class Chess : ChessActions {
 
             }
         }
+
+        blackKing = board[0][4].piece as King
+        whiteKing = board[7][4].piece as King
     }
 
     private fun addAlivePiece(piece: Piece?) {
@@ -102,6 +106,21 @@ class Chess : ChessActions {
         }
     }
 
+    fun boardCopy(): Array<Array<Box>> {
+
+        val boardCopy = Array(8) { x -> Array(8) { y -> Box(Coordinate(x, y), null) } }
+
+        for (i in 0..boardCopy.lastIndex) {
+            for (j in 0..boardCopy[0].lastIndex) {
+                val boxy = board[i][j]
+                boardCopy[i][j] = boxy
+            }
+        }
+
+        return boardCopy
+
+    }
+
     // This is for reset properly the active "can be killed en passant" Pawn
     private fun handleActiveEnPassant() {
         if (whiteTurn) {
@@ -153,9 +172,29 @@ class Chess : ChessActions {
 
         handleActiveEnPassant()
 
+        println("$blackKing ${blackKing.position.x} ${blackKing.position.y}")
+        println("$whiteKing ${whiteKing.position.x} ${whiteKing.position.y}")
+
         println(whitePiecesAlive)
         println(blackPiecesAlive)
 
     }
 
+    override fun toString(): String {
+        var theBoard = ""
+
+        for (i in 0..board.lastIndex) {
+            for (j in 0..board[0].lastIndex) {
+                val piece = board[i][j].piece
+                theBoard += if (piece != null) {
+                    "$piece "
+                } else {
+                    "  "
+                }
+            }
+            theBoard += "\n"
+        }
+
+        return theBoard
+    }
 }

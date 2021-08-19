@@ -125,7 +125,7 @@ class Bishop(position: Coordinate, team: Team, observer: Chess) : Piece(position
                     if (!isEnemy(box.piece!!)) {
                         canKillBoxes.add(box)
                     } else {
-                        if(box.piece is King) {
+                        if (box.piece is King) {
                             continue
                         }
                     }
@@ -150,7 +150,7 @@ class Bishop(position: Coordinate, team: Team, observer: Chess) : Piece(position
                     if (!isEnemy(box.piece!!)) {
                         canKillBoxes.add(box)
                     } else {
-                        if(box.piece is King) {
+                        if (box.piece is King) {
                             continue
                         }
                     }
@@ -175,7 +175,7 @@ class Bishop(position: Coordinate, team: Team, observer: Chess) : Piece(position
                     if (!isEnemy(box.piece!!)) {
                         canKillBoxes.add(box)
                     } else {
-                        if(box.piece is King) {
+                        if (box.piece is King) {
                             continue
                         }
                     }
@@ -200,7 +200,7 @@ class Bishop(position: Coordinate, team: Team, observer: Chess) : Piece(position
                     if (!isEnemy(box.piece!!)) {
                         canKillBoxes.add(box)
                     } else {
-                        if(box.piece is King) {
+                        if (box.piece is King) {
                             continue
                         }
                     }
@@ -211,6 +211,5 @@ class Bishop(position: Coordinate, team: Team, observer: Chess) : Piece(position
 
         return canKillBoxes
     }
-
 
 }
