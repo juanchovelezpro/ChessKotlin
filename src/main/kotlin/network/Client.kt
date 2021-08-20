@@ -44,6 +44,6 @@ fun main(args: Array<String>){
     try {
         client.start()
     }catch (ex : Exception){
-        println("Something went wrong")
+        println("Something went wrong\n${ex.localizedMessage}")
     }
 }

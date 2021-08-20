@@ -55,6 +55,6 @@ fun main(args: Array<String>) {
     try{
         server.start()
     }catch (ex: Exception){
-        println("Something went wrong")
+        println("Something went wrong\nError:${ex.localizedMessage}")
     }
 }
