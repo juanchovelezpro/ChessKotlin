@@ -1,5 +1,6 @@
 package network
 
+import io.ktor.util.network.*
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 import java.net.ServerSocket
@@ -17,6 +18,9 @@ class Server(val host: String, val port: Int) : NetworkObserver{
         println("Server on -> ${socket?.inetAddress?.hostAddress}")
 
         val client = socket?.accept()
+        println("Client connected ! : ${client?.remoteSocketAddress?.hostname}")
+
+
         connectionEstablished = true
         dataInput = ObjectInputStream(client?.getInputStream())
         dataOutput = ObjectOutputStream(client?.getOutputStream())
