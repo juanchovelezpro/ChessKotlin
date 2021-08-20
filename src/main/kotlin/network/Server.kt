@@ -55,6 +55,6 @@ fun main(args: Array<String>) {
     try{
         server.start()
     }catch (ex: Exception){
-        ex.printStackTrace()
+        println("Something went wrong")
     }
 }

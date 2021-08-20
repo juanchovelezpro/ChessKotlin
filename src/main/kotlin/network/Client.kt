@@ -44,6 +44,6 @@ fun main(args: Array<String>){
     try {
         client.start()
     }catch (ex : Exception){
-        ex.printStackTrace()
+        println("Something went wrong")
     }
 }
