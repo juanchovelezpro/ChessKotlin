@@ -5,7 +5,7 @@ import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 import java.net.ServerSocket
 
-class Server(val host: String, val port: Int) : NetworkObserver{
+class Server(val host: String, val port: Int) : NetworkObserver {
 
     var socket: ServerSocket? = null
     var connectionEstablished = false
@@ -52,9 +52,9 @@ class Server(val host: String, val port: Int) : NetworkObserver{
 
 fun main(args: Array<String>) {
     val server = Server("", 20980)
-    try{
+    try {
         server.start()
-    }catch (ex: Exception){
+    } catch (ex: Exception) {
         println("Something went wrong\nError:${ex.localizedMessage}")
     }
 }

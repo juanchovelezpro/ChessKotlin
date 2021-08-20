@@ -1,18 +1,17 @@
 package network
 
-import model.Chess
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 import java.net.Socket
 
 class Client(val host: String, val port: Int) : NetworkObserver {
 
-    var socket : Socket? = null
+    var socket: Socket? = null
     var dataOutput: ObjectOutputStream? = null
     var dataInput: ObjectInputStream? = null
 
-    fun start(){
-        socket = Socket(host,port)
+    fun start() {
+        socket = Socket(host, port)
         dataOutput = ObjectOutputStream(socket?.getOutputStream())
         dataInput = ObjectInputStream(socket?.getInputStream())
         val sender = Sender(dataOutput!!, this)
@@ -39,11 +38,11 @@ class Client(val host: String, val port: Int) : NetworkObserver {
 
 }
 
-fun main(args: Array<String>){
+fun main(args: Array<String>) {
     val client = Client("192.168.1.8", 20980)
     try {
         client.start()
-    }catch (ex : Exception){
-        println("Something went wrong\n${ex.localizedMessage}")
+    } catch (ex: Exception) {
+        println("Something went wrong\nError:${ex.localizedMessage}")
     }
 }

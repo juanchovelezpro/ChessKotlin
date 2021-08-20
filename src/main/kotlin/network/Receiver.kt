@@ -12,7 +12,7 @@ class Receiver(val inputStream: ObjectInputStream, val observer: NetworkObserver
                 println("MSG: -> ${theMsg.text}")
             }
         } catch (ex: Exception) {
-            println("Ups... Looks like something went wrong!\n Error:${ex.localizedMessage}")
+            println("Ups... Looks like something went wrong!\nError:${ex.localizedMessage}")
         } finally {
             inputStream.close()
             observer.onClose()
