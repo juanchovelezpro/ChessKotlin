@@ -3,6 +3,8 @@
 /src/META-INF/
 # Ignore Gradle project-specific cache directory
 .gradle
-
+/gradle/
+gradlew
+gradlew.bat
 # Ignore Gradle build output directory
 build
