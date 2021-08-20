@@ -109,6 +109,21 @@ class Chess() : ChessActions {
         }
     }
 
+    fun rotateBoard180(): Array<Array<Box>> {
+
+        val rotated = Array(8) { x -> Array(8) { y -> Box(Coordinate(x, y), null) } }
+
+        var i = 0
+        var j = board.lastIndex
+
+        while (i <= board.lastIndex && j >= 0) {
+            rotated[i++] = board[j--].reversedArray()
+        }
+
+        return rotated
+
+    }
+
     // This is for reset properly the active "can be killed en passant" Pawn
     private fun handleActiveEnPassant() {
         if (whiteTurn) {
@@ -163,7 +178,7 @@ class Chess() : ChessActions {
         println("Nobody wins...")
     }
 
-    private fun verifyCheck(king: King) {
+    private fun verifyCheckAndTie(king: King) {
         val enemiesPossibleMovements = ArrayList<Box>()
         val myTeam = king.team
         val boxKing = board[king.position.x][king.position.y]
@@ -244,9 +259,9 @@ class Chess() : ChessActions {
         handleActiveEnPassant()
 
         if (whiteTurn) {
-            verifyCheck(whiteKing)
+            verifyCheckAndTie(whiteKing)
         } else {
-            verifyCheck(blackKing)
+            verifyCheckAndTie(blackKing)
         }
 
         println(whitePiecesAlive)

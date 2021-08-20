@@ -9,7 +9,6 @@ class Window : JFrame() {
     var boardPanel: BoardPanel
     var chess: Chess
 
-
     init {
         title = "Chess Game"
         layout = BorderLayout()
@@ -27,6 +26,5 @@ class Window : JFrame() {
 
         isUndecorated = true
     }
-
 
 }

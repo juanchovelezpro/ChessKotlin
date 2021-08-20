@@ -31,8 +31,11 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
         }
 
         // Update UI
-        panelBoard.drawBoard(chess.board)
-
+        if (chess.whiteTurn) {
+            panelBoard.drawBoard(chess.board)
+        } else {
+            panelBoard.drawBoard(chess.rotateBoard180())
+        }
     }
 
     // Putting all previous active boxes to their original color

@@ -12,7 +12,6 @@ class BoardPanel(val window: Window) : JPanel(), ChessActions {
 
     lateinit var board: Array<Array<JLabel>>
 
-
     init {
 
         layout = GridLayout(8, 8)
@@ -31,7 +30,6 @@ class BoardPanel(val window: Window) : JPanel(), ChessActions {
         revalidate()
         repaint()
     }
-
 
     private fun updateBoard(boardChess: Array<Array<Box>>) {
 
@@ -82,6 +80,5 @@ class BoardPanel(val window: Window) : JPanel(), ChessActions {
     override fun onTurnChanged() {
 
     }
-
 
 }

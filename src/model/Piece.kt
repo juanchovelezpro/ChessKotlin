@@ -37,7 +37,7 @@ abstract class Piece(var position: Coordinate, val team: Team, var observer: Che
         if (pMovementsToVerify.isEmpty()) {
             return pMovements
         } else {
-            // A copy to not alter the original board.
+
             val board = observer.board
             val destination = pMovementsToVerify[0].position
 
