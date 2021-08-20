@@ -119,7 +119,7 @@
       <command value="gradle --init-script" />
     </option>
   </component>
-  <component name="RunManager" selected="JAR Application.Chess-1.0-SNAPSHOT.jar">
+  <component name="RunManager" selected="Kotlin.LauncherKt">
     <configuration name="Chess [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
