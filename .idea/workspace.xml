@@ -9,7 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Migrating to Gradle Project." />
+    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Change gradle configurations">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/network/Client.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/network/Message.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/network/NetworkObserver.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/network/Receiver.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/network/Sender.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/network/Server.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,8 +69,9 @@
       <list>
         <option value="Kotlin File" />
         <option value="Kotlin Enum" />
-        <option value="Kotlin Class" />
+        <option value="Interface" />
         <option value="Kotlin Interface" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -98,7 +109,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.22746186" />
     <property name="project.structure.side.proportion" value="0.19063002" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -119,49 +130,7 @@
       <command value="gradle --init-script" />
     </option>
   </component>
-  <component name="RunManager" selected="Kotlin.LauncherKt">
-    <configuration name="Chess [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="Chess [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="clean" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Kotlin.ClientKt">
     <configuration name="Chess [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -187,8 +156,22 @@
       <option name="JAR_PATH" value="$PROJECT_DIR$/build/libs/Chess-1.0-SNAPSHOT.jar" />
       <method v="2" />
     </configuration>
+    <configuration name="ClientKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="network.ClientKt" />
+      <module name="Chess.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LauncherKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="launcher.LauncherKt" />
+      <module name="Chess.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="network.ServerKt" />
       <module name="Chess.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -207,11 +190,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.ClientKt" />
+        <item itemvalue="Kotlin.ServerKt" />
+        <item itemvalue="Kotlin.LauncherKt" />
         <item itemvalue="JAR Application.Chess-1.0-SNAPSHOT.jar" />
         <item itemvalue="Gradle.Chess [jar]" />
-        <item itemvalue="Gradle.Chess [build]" />
-        <item itemvalue="Gradle.Chess [clean]" />
-        <item itemvalue="Kotlin.LauncherKt" />
       </list>
     </recent_temporary>
   </component>
@@ -239,7 +222,7 @@
       <workItem from="1629470613279" duration="253000" />
       <workItem from="1629470882907" duration="1903000" />
       <workItem from="1629472816202" duration="419000" />
-      <workItem from="1629473248514" duration="343000" />
+      <workItem from="1629473248514" duration="19901000" />
     </task>
     <task id="LOCAL-00001" summary="Pawn movement done.">
       <created>1629069887034</created>
@@ -423,7 +406,21 @@
       <option name="project" value="LOCAL" />
       <updated>1629473526998</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Refactor gradle project">
+      <created>1629473834239</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1629473834239</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Change gradle configurations">
+      <created>1629473880119</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1629473880119</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -442,8 +439,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Pawn movement done." />
-    <MESSAGE value="Rook movement done." />
     <MESSAGE value="Bishop movement done." />
     <MESSAGE value="Queen movement done." />
     <MESSAGE value="Knight movement done." />
@@ -467,6 +462,8 @@
     <MESSAGE value="Handle turn done" />
     <MESSAGE value="Reformat code" />
     <MESSAGE value="Migrating to Gradle Project." />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrating to Gradle Project." />
+    <MESSAGE value="Refactor gradle project" />
+    <MESSAGE value="Change gradle configurations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change gradle configurations" />
   </component>
 </project>
