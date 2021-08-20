@@ -12,10 +12,13 @@ class Sender(val outputStream: ObjectOutputStream, val observer: NetworkObserver
                 println("ME: -> ${msg.text}")
                 outputStream.writeObject(packet)
             }
-        }finally {
+        } catch (ex: Exception) {
+            println("Ups... Looks like something went wrong!\nError:${ex.localizedMessage}")
+        } finally {
             outputStream.close()
             observer.onClose()
         }
+
     }
 
     override fun run() {

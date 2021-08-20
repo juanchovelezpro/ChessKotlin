@@ -11,10 +11,13 @@ class Receiver(val inputStream: ObjectInputStream, val observer: NetworkObserver
                 val theMsg = packet.content as Message
                 println("MSG: -> ${theMsg.text}")
             }
-        }finally {
+        } catch (ex: Exception) {
+            println("Ups... Looks like something went wrong!\n Error:${ex.localizedMessage}")
+        } finally {
             inputStream.close()
             observer.onClose()
         }
+
     }
 
     override fun run() {
