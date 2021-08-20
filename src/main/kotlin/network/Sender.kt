@@ -8,8 +8,9 @@ class Sender(val outputStream: ObjectOutputStream, val observer: NetworkObserver
         try {
             while (true) {
                 val msg = Message(readLine()!!)
+                val packet = Packet(msg)
                 println("ME: -> ${msg.text}")
-                outputStream.writeObject(msg)
+                outputStream.writeObject(packet)
             }
         }finally {
             outputStream.close()

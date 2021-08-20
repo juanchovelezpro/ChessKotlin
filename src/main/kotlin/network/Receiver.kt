@@ -7,8 +7,9 @@ class Receiver(val inputStream: ObjectInputStream, val observer: NetworkObserver
     private fun receive() {
         try {
             while (true) {
-                val msg = inputStream.readObject() as Message
-                println("MSG: -> ${msg.text}")
+                val packet = inputStream.readObject() as Packet
+                val theMsg = packet.content as Message
+                println("MSG: -> ${theMsg.text}")
             }
         }finally {
             inputStream.close()
