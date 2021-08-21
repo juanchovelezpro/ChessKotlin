@@ -39,8 +39,11 @@ jar {
     //noinspection GroovyAssignabilityCheck
     manifest {
         attributes 'Main-Class': 'launcher.LauncherKt'
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
     }
 
     from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+
+
 
 }
