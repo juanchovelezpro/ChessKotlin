@@ -9,15 +9,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Reformat code">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/utils/ImageLoader.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/background.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/chessBackground.jpg" afterDir="false" />
+    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Implementing new GUI and server/client">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Bishop.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Bishop.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Box.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Box.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Chess.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Chess.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Coordinate.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Coordinate.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/King.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/King.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Knight.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Knight.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Pawn.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Pawn.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Piece.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Piece.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Queen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Queen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Rook.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Rook.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Team.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Team.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/network/Client.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/network/Client.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/network/Message.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/network/NetworkObserver.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/network/NetworkObserver.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/network/Receiver.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/network/Receiver.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/network/Sender.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/network/Sender.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/network/Server.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/network/Server.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/BoardPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/BoardPanel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/Window.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/Window.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/utils/ImageLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/utils/ImageLoader.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +120,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/kotlin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/kotlin/network" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -115,6 +133,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\velez\IdeaProjects\Chess\src\main\kotlin\network" />
       <recent name="C:\Users\velez\IdeaProjects\Chess\src\main\kotlin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -130,53 +149,7 @@
       <command value="gradle --init-script" />
     </option>
   </component>
-  <component name="RunManager" selected="Kotlin.LauncherKt">
-    <configuration name="Chess [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="Chess [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="clean" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="Chess-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/build/libs/Chess-1.0-SNAPSHOT.jar" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Kotlin.ClientKt">
     <configuration name="ClientKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="network.ClientKt" />
       <module name="Chess.main" />
@@ -186,6 +159,27 @@
     </configuration>
     <configuration name="LauncherKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="launcher.LauncherKt" />
+      <module name="Chess.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NetworkClientAdapterKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="network.NetworkClientAdapterKt" />
+      <module name="Chess.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NetworkServerAdapterKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="network.NetworkServerAdapterKt" />
+      <module name="Chess.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="network.ServerKt" />
       <module name="Chess.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -204,11 +198,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.LauncherKt" />
-        <item itemvalue="JAR Application.Chess-1.0-SNAPSHOT.jar" />
-        <item itemvalue="Gradle.Chess [build]" />
-        <item itemvalue="Gradle.Chess [clean]" />
         <item itemvalue="Kotlin.ClientKt" />
+        <item itemvalue="Kotlin.ServerKt" />
+        <item itemvalue="Kotlin.NetworkServerAdapterKt" />
+        <item itemvalue="Kotlin.NetworkClientAdapterKt" />
+        <item itemvalue="Kotlin.LauncherKt" />
       </list>
     </recent_temporary>
   </component>
@@ -236,7 +230,9 @@
       <workItem from="1629470613279" duration="253000" />
       <workItem from="1629470882907" duration="1903000" />
       <workItem from="1629472816202" duration="419000" />
-      <workItem from="1629473248514" duration="35214000" />
+      <workItem from="1629473248514" duration="35291000" />
+      <workItem from="1629588075243" duration="732000" />
+      <workItem from="1629588976912" duration="25404000" />
     </task>
     <task id="LOCAL-00001" summary="Pawn movement done.">
       <created>1629069887034</created>
@@ -483,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629502880681</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Implementing new GUI and server/client">
+      <created>1629513786836</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1629513786836</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,7 +505,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="King movement done without castling and checks." />
     <MESSAGE value="Refactor Pawn movements and King movement partially done." />
     <MESSAGE value="Fix bug movement in the same box" />
     <MESSAGE value="Fix logic movement." />
@@ -527,6 +529,7 @@
     <MESSAGE value="Catch exception" />
     <MESSAGE value="Printing exceptions on catch" />
     <MESSAGE value="Reformat code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reformat code" />
+    <MESSAGE value="Implementing new GUI and server/client" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementing new GUI and server/client" />
   </component>
 </project>

@@ -1,6 +1,7 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.5.21'
     id 'java'
+    id 'org.jetbrains.kotlin.plugin.noarg' version '1.5.21'
 }
 
 group 'org.example'
@@ -20,10 +21,8 @@ dependencies {
     // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1-native-mt'
 
-    // Ktor
-    implementation 'io.ktor:ktor-network:1.6.2'
-    implementation 'io.ktor:ktor-server-netty:1.6.2'
 }
+
 
 test {
     useJUnitPlatform()
@@ -43,7 +42,6 @@ jar {
     }
 
     from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
-
 
 
 }

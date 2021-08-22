@@ -1,6 +1,8 @@
 package model
 
-enum class Team {
+import java.io.Serializable
+
+enum class Team : Serializable {
     WHITE,
     BLACK
 }

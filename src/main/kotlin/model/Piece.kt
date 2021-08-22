@@ -1,6 +1,8 @@
 package model
 
-abstract class Piece(var position: Coordinate, val team: Team, var observer: Chess) : IMovement {
+import java.io.Serializable
+
+abstract class Piece(var position: Coordinate, val team: Team, var observer: Chess) : IMovement, Serializable {
 
     lateinit var shape: String
     var firstMovementDone = false

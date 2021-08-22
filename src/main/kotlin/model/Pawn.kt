@@ -1,8 +1,9 @@
 package model
 
+import java.io.Serializable
 import kotlin.math.abs
 
-class Pawn(position: Coordinate, team: Team, observer: Chess) : Piece(position, team, observer) {
+class Pawn(position: Coordinate, team: Team, observer: Chess) : Piece(position, team, observer), Serializable {
 
     var canBeKilledEnPassant = false
 

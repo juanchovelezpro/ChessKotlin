@@ -1,6 +1,8 @@
 package model
 
-class Bishop(position: Coordinate, team: Team, observer: Chess) : Piece(position, team, observer) {
+import java.io.Serializable
+
+class Bishop(position: Coordinate, team: Team, observer: Chess) : Piece(position, team, observer), Serializable {
 
     init {
 

@@ -1,6 +1,8 @@
 package model
 
-class Queen(position: Coordinate, team: Team, observer: Chess) : Piece(position, team, observer) {
+import java.io.Serializable
+
+class Queen(position: Coordinate, team: Team, observer: Chess) : Piece(position, team, observer), Serializable {
 
     init {
 

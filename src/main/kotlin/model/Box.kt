@@ -1,8 +1,10 @@
 package model
 
 import java.awt.Color
+import java.io.Serializable
 
-class Box(var position: Coordinate, var piece: Piece?, var color: Color? = null, var originalColor: Color? = null) {
+class Box(var position: Coordinate, var piece: Piece?, var color: Color? = null, var originalColor: Color? = null) :
+    Serializable {
 
     override fun toString(): String {
         return "|$position | Piece: $piece|"

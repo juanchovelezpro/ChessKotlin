@@ -1,6 +1,8 @@
 package model
 
-class Chess() : ChessActions {
+import java.io.Serializable
+
+class Chess() : ChessActions, Serializable {
 
     val board = Array(8) { x -> Array(8) { y -> Box(Coordinate(x, y), null) } }
 

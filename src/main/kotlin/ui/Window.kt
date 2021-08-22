@@ -11,33 +11,40 @@ class Window : JFrame() {
     companion object {
         val WIDTH = Toolkit.getDefaultToolkit().screenSize.width
         val HEIGHT = Toolkit.getDefaultToolkit().screenSize.height
-        val FONT = Font("Garamond", Font.BOLD, 52)
+        val FONT = Font("Garamond", Font.BOLD, 36)
     }
 
     lateinit var boardPanel: BoardPanel
-    lateinit var chess: Chess
-    lateinit var initialPanel: InitialPanel
+    var chess: Chess
+    var initialPanel: InitialPanel
 
     init {
         title = "Chess Game"
         layout = BorderLayout()
         defaultCloseOperation = EXIT_ON_CLOSE
-        //extendedState = MAXIMIZED_BOTH
+        extendedState = MAXIMIZED_BOTH
         setSize(500, 500)
         setLocationRelativeTo(null)
-
-        //initialPanel = InitialPanel(this)
-        //add(initialPanel)
+        isUndecorated = true
 
         chess = Chess()
 
-        boardPanel = BoardPanel(this)
+        initialPanel = InitialPanel(this)
+        add(initialPanel)
 
-        chess.observer = boardPanel
 
-        add(boardPanel, BorderLayout.CENTER)
+        //boardPanel = BoardPanel(this)
 
-        isUndecorated = true
+        //chess.observer = boardPanel
+
+        //add(boardPanel, BorderLayout.CENTER)
+
+
+    }
+
+    fun refresh() {
+        revalidate()
+        repaint()
     }
 
 }

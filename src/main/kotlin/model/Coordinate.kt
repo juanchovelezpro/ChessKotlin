@@ -1,6 +1,8 @@
 package model
 
-class Coordinate(var x: Int, var y: Int) {
+import java.io.Serializable
+
+class Coordinate(var x: Int, var y: Int) : Serializable {
 
     override fun equals(other: Any?): Boolean {
         val coor = other as Coordinate

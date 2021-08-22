@@ -38,7 +38,7 @@ class BoardPanel(val window: Window) : JPanel(), ChessActions {
         for (i in 0..boardChess.lastIndex) {
             for (j in 0..boardChess[0].lastIndex) {
 
-                board[i][j].font = Font(board[i][j].font.name, Font.PLAIN, 48)
+                board[i][j].font = Font(board[i][j].font.name, Font.PLAIN, 64)
                 board[i][j].text = boardChess[i][j].piece?.shape
                 board[i][j].background = boardChess[i][j].color
                 board[i][j].border = BevelBorder(BevelBorder.RAISED)
