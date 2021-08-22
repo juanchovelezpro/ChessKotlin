@@ -273,21 +273,4 @@ class Chess() : ChessActions, Serializable {
 
     }
 
-    override fun toString(): String {
-        var theBoard = ""
-
-        for (i in 0..board.lastIndex) {
-            for (j in 0..board[0].lastIndex) {
-                val piece = board[i][j].piece
-                theBoard += if (piece != null) {
-                    "$piece "
-                } else {
-                    "  "
-                }
-            }
-            theBoard += "\n"
-        }
-
-        return theBoard
-    }
 }

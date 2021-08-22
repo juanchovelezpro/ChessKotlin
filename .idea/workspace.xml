@@ -10,12 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Chess working with LAN connection">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/ServerBoardPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/ServerBoardPanel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/Window.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/Window.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/chessBackground.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Chess.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Chess.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +125,7 @@
       <command value="gradle --init-script" />
     </option>
   </component>
-  <component name="RunManager" selected="Kotlin.LauncherKt">
+  <component name="RunManager" selected="JAR Application.Chess-1.0-SNAPSHOT.jar">
     <configuration name="Chess [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -203,8 +199,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.LauncherKt" />
         <item itemvalue="JAR Application.Chess-1.0-SNAPSHOT.jar" />
+        <item itemvalue="Kotlin.LauncherKt" />
         <item itemvalue="Gradle.Chess [jar]" />
         <item itemvalue="Gradle.Chess [clean]" />
         <item itemvalue="Kotlin.ClientKt" />

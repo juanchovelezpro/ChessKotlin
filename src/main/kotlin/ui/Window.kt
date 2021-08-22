@@ -5,7 +5,6 @@ import utils.ImageLoader
 import java.awt.BorderLayout
 import java.awt.Dimension
 import java.awt.Font
-import javax.swing.ImageIcon
 import javax.swing.JFrame
 
 class Window : JFrame() {

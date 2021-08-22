@@ -51,7 +51,7 @@ class InitialPanel(val window: Window) : JPanel() {
 
         // Waiting for an opponent label
         labWaiting.size = Dimension(Window.WIDTH, 60)
-        labWaiting.location = Point(Window.WIDTH/2 - size.width / 2 + 20, Window.HEIGHT / 2 - labWaiting.height / 2)
+        labWaiting.location = Point(Window.WIDTH / 2 - size.width / 2 + 20, Window.HEIGHT / 2 - labWaiting.height / 2)
         labWaiting.font = Window.FONT
         labWaiting.foreground = Color.BLACK
         labWaiting.background = backgroundColor
@@ -185,7 +185,7 @@ class InitialPanel(val window: Window) : JPanel() {
         window.refresh()
     }
 
-    private fun waitingForOpponents(){
+    private fun waitingForOpponents() {
         remove(btnSolo)
         remove(btnBack)
         remove(btnFindMatch)
