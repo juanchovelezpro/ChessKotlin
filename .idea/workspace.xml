@@ -9,16 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Networking test">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ui/ClientBoardPanel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ui/ServerBoardPanel.kt" afterDir="false" />
+    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Chess working with LAN connection">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/network/Client.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/network/Client.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/network/Sender.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/network/Sender.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/BoardPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/BoardPanel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/MouseBoxAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/MouseBoxAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/ServerBoardPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/ServerBoardPanel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/Window.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/Window.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/chessBackground.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +129,7 @@
       <command value="gradle --init-script" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.Chess [clean]">
+  <component name="RunManager" selected="Kotlin.LauncherKt">
     <configuration name="Chess [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -206,10 +203,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Chess [clean]" />
         <item itemvalue="Kotlin.LauncherKt" />
         <item itemvalue="JAR Application.Chess-1.0-SNAPSHOT.jar" />
         <item itemvalue="Gradle.Chess [jar]" />
+        <item itemvalue="Gradle.Chess [clean]" />
         <item itemvalue="Kotlin.ClientKt" />
       </list>
     </recent_temporary>
@@ -241,7 +238,7 @@
       <workItem from="1629473248514" duration="35291000" />
       <workItem from="1629588075243" duration="732000" />
       <workItem from="1629588976912" duration="26571000" />
-      <workItem from="1629655889540" duration="6637000" />
+      <workItem from="1629655889540" duration="13735000" />
     </task>
     <task id="LOCAL-00001" summary="Pawn movement done.">
       <created>1629069887034</created>
@@ -516,7 +513,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629615792911</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Chess working with LAN connection">
+      <created>1629662728935</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1629662728935</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -535,7 +539,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="&quot;En Passant&quot; movement added. Only possible movement but no the kill action yet" />
     <MESSAGE value="En Passant movement done" />
     <MESSAGE value="Castling done" />
     <MESSAGE value="Refactor code" />
@@ -560,6 +563,7 @@
     <MESSAGE value="Setting up Networking module" />
     <MESSAGE value="Refactor networking" />
     <MESSAGE value="Networking test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Networking test" />
+    <MESSAGE value="Chess working with LAN connection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Chess working with LAN connection" />
   </component>
 </project>

@@ -1,18 +1,27 @@
 package ui
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import model.Chess
 import network.NetworkObserver
 import network.Packet
 import network.Server
 import java.net.Socket
+import kotlin.concurrent.thread
 
 class ServerBoardPanel(window: Window) : BoardPanel(window), NetworkObserver {
 
     val server = Server(20980, this)
 
+
     init {
-        server.start()
+        thread {
+            server.start()
+        }
     }
+
+
 
     override fun onConnection(socket: Socket?) {
         drawBoard(window.chess.board)

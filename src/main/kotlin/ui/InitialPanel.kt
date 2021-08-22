@@ -3,6 +3,7 @@ package ui
 import utils.ImageLoader
 import java.awt.*
 import javax.swing.JButton
+import javax.swing.JLabel
 import javax.swing.JPanel
 import javax.swing.border.BevelBorder
 import kotlin.system.exitProcess
@@ -17,6 +18,7 @@ class InitialPanel(val window: Window) : JPanel() {
     var btnCreateMatch = JButton("CREATE A MATCH")
     var btnFindMatch = JButton("FIND A MATCH")
     var btnExit = JButton("E X I T")
+    var labWaiting = JLabel("Waiting for an opponent...")
 
     var btnBack = JButton("<")
 
@@ -46,6 +48,13 @@ class InitialPanel(val window: Window) : JPanel() {
         btnPlay.background = backgroundColor
         btnPlay.isFocusPainted = false
         btnPlay.border = border
+
+        // Waiting for an opponent label
+        labWaiting.size = Dimension(Window.WIDTH, 60)
+        labWaiting.location = Point(Window.WIDTH/2 - size.width / 2 + 20, Window.HEIGHT / 2 - labWaiting.height / 2)
+        labWaiting.font = Window.FONT
+        labWaiting.foreground = Color.BLACK
+        labWaiting.background = backgroundColor
 
         // Button Exit
         btnExit.size = size
@@ -150,14 +159,14 @@ class InitialPanel(val window: Window) : JPanel() {
 
     private fun initSoloMatch() {
         removeAll()
-
         window.refresh()
     }
 
     private fun initCreateMatch() {
-        removeAll()
         layout = BorderLayout()
         window.transform()
+        waitingForOpponents()
+        window.isResizable = false
         serverBoardPanel = ServerBoardPanel(window)
         serverBoardPanel?.isOpaque = true
         add(serverBoardPanel)
@@ -174,6 +183,14 @@ class InitialPanel(val window: Window) : JPanel() {
         add(clientBoardPanel)
         window.adjust()
         window.refresh()
+    }
+
+    private fun waitingForOpponents(){
+        remove(btnSolo)
+        remove(btnBack)
+        remove(btnFindMatch)
+        remove(btnCreateMatch)
+        add(labWaiting)
     }
 
     override fun paintComponent(g: Graphics?) {
