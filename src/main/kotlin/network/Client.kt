@@ -18,7 +18,6 @@ class Client(private val host: String, private val port: Int, val observer: Netw
         dataOutput = ObjectOutputStream(socket?.getOutputStream())
         dataInput = ObjectInputStream(socket?.getInputStream())
         sender = Sender(dataOutput!!, this)
-        sender.start()
         receiver = Receiver(dataInput!!, this)
         receiver.start()
     }
@@ -44,14 +43,4 @@ class Client(private val host: String, private val port: Int, val observer: Netw
         observer?.onClose()
     }
 
-}
-
-fun main(args: Array<String>) {
-    val client = Client("192.168.1.8", 9812)
-    try {
-        client.start()
-    } catch (ex: Exception) {
-        println("Something went wrong\nError:${ex.localizedMessage}")
-        ex.printStackTrace()
-    }
 }

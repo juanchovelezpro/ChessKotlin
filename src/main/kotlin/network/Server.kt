@@ -1,12 +1,9 @@
 package network
 
-import java.awt.Dimension
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 import java.net.ServerSocket
 import java.net.Socket
-import javax.swing.JButton
-import javax.swing.JFrame
 
 class Server(private val port: Int, val observer: NetworkObserver? = null) : NetworkObserver {
 
@@ -34,7 +31,7 @@ class Server(private val port: Int, val observer: NetworkObserver? = null) : Net
 
     }
 
-    fun send(packet: Packet){
+    fun send(packet: Packet) {
         sender.send(packet)
     }
 
@@ -57,24 +54,5 @@ class Server(private val port: Int, val observer: NetworkObserver? = null) : Net
         println("Closing connection...")
         socket?.close()
         observer?.onClose()
-    }
-}
-
-fun main(args: Array<String>) {
-    val server = Server(9812)
-    try {
-        server.start()
-
-        val window = JFrame()
-        window.title = "SERVER"
-        window.size = Dimension(200,200)
-        val but = JButton("PRESS")
-        but.addActionListener { server.send(Packet("Pressing!")) }
-        window.add(but)
-        window.isVisible = true
-
-    } catch (ex: Exception) {
-        println("Something went wrong\nError:${ex.localizedMessage}")
-        ex.printStackTrace()
     }
 }

@@ -9,34 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Implementing new GUI and server/client">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Bishop.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Bishop.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Box.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Box.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Chess.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Chess.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Coordinate.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Coordinate.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/King.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/King.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Knight.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Knight.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Pawn.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Pawn.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Piece.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Piece.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Queen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Queen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Rook.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Rook.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Team.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Team.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/network/Client.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/network/Client.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/network/Message.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/network/NetworkObserver.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/network/NetworkObserver.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/network/Receiver.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/network/Receiver.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/network/Sender.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/network/Sender.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/network/Server.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/network/Server.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/BoardPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/BoardPanel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/Window.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/Window.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/utils/ImageLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/utils/ImageLoader.kt" afterDir="false" />
-    </list>
+    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Setting up Networking module" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -232,7 +205,7 @@
       <workItem from="1629472816202" duration="419000" />
       <workItem from="1629473248514" duration="35291000" />
       <workItem from="1629588075243" duration="732000" />
-      <workItem from="1629588976912" duration="25404000" />
+      <workItem from="1629588976912" duration="25757000" />
     </task>
     <task id="LOCAL-00001" summary="Pawn movement done.">
       <created>1629069887034</created>
@@ -486,7 +459,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629513786836</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Setting up Networking module">
+      <created>1629615129567</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1629615129567</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -505,7 +485,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactor Pawn movements and King movement partially done." />
     <MESSAGE value="Fix bug movement in the same box" />
     <MESSAGE value="Fix logic movement." />
     <MESSAGE value="&quot;En Passant&quot; movement added. Only possible movement but no the kill action yet" />
@@ -530,6 +509,7 @@
     <MESSAGE value="Printing exceptions on catch" />
     <MESSAGE value="Reformat code" />
     <MESSAGE value="Implementing new GUI and server/client" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementing new GUI and server/client" />
+    <MESSAGE value="Setting up Networking module" />
+    <option name="LAST_COMMIT_MESSAGE" value="Setting up Networking module" />
   </component>
 </project>
