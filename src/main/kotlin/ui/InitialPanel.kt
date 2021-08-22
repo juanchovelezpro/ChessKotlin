@@ -1,10 +1,7 @@
 package ui
 
 import utils.ImageLoader
-import java.awt.Color
-import java.awt.Dimension
-import java.awt.Graphics
-import java.awt.Point
+import java.awt.*
 import javax.swing.JButton
 import javax.swing.JPanel
 import javax.swing.border.BevelBorder
@@ -17,13 +14,14 @@ class InitialPanel(val window: Window) : JPanel() {
     var btnPlay = JButton("P L A Y")
 
     var btnSolo = JButton("S O L O")
-    var btnCreateMatch = JButton("C R E A T E  M A T C H")
-    var btnFindMatch = JButton("F I N D  A  M A T C H")
+    var btnCreateMatch = JButton("CREATE A MATCH")
+    var btnFindMatch = JButton("FIND A MATCH")
     var btnExit = JButton("E X I T")
 
-    var btnBack = JButton("<<<")
+    var btnBack = JButton("<")
 
-    var boardPanel: BoardPanel? = null
+    var serverBoardPanel: ServerBoardPanel? = null
+    var clientBoardPanel: ClientBoardPanel? = null
 
 
     init {
@@ -36,7 +34,7 @@ class InitialPanel(val window: Window) : JPanel() {
 
         layout = null
 
-        val size = Dimension(Window.WIDTH / 3, Window.HEIGHT / 16)
+        val size = Dimension(Window.WIDTH / 2, Window.HEIGHT / 16)
         val backgroundColor = Color(0, 0, 0, 100)
         val border = BevelBorder(BevelBorder.RAISED)
 
@@ -129,7 +127,11 @@ class InitialPanel(val window: Window) : JPanel() {
         }
 
         btnCreateMatch.addActionListener {
+            initCreateMatch()
+        }
 
+        btnFindMatch.addActionListener {
+            initFindMatch()
         }
 
     }
@@ -148,21 +150,30 @@ class InitialPanel(val window: Window) : JPanel() {
 
     private fun initSoloMatch() {
         removeAll()
-        boardPanel = BoardPanel(window)
-        boardPanel?.isOpaque = true
-        add(boardPanel)
+
         window.refresh()
     }
 
     private fun initCreateMatch() {
         removeAll()
-
-
+        layout = BorderLayout()
+        window.transform()
+        serverBoardPanel = ServerBoardPanel(window)
+        serverBoardPanel?.isOpaque = true
+        add(serverBoardPanel)
+        window.adjust()
         window.refresh()
     }
 
     private fun initFindMatch() {
-
+        removeAll()
+        layout = BorderLayout()
+        window.transform()
+        clientBoardPanel = ClientBoardPanel(window)
+        clientBoardPanel?.isOpaque = true
+        add(clientBoardPanel)
+        window.adjust()
+        window.refresh()
     }
 
     override fun paintComponent(g: Graphics?) {

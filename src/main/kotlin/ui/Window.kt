@@ -2,19 +2,18 @@ package ui
 
 import model.Chess
 import java.awt.BorderLayout
+import java.awt.Dimension
 import java.awt.Font
-import java.awt.Toolkit
 import javax.swing.JFrame
 
 class Window : JFrame() {
 
     companion object {
-        val WIDTH = Toolkit.getDefaultToolkit().screenSize.width
-        val HEIGHT = Toolkit.getDefaultToolkit().screenSize.height
-        val FONT = Font("Garamond", Font.BOLD, 36)
+        val WIDTH = 600
+        val HEIGHT = 600
+        val FONT = Font("Garamond", Font.BOLD, 24)
     }
 
-    lateinit var boardPanel: BoardPanel
     var chess: Chess
     var initialPanel: InitialPanel
 
@@ -22,8 +21,8 @@ class Window : JFrame() {
         title = "Chess Game"
         layout = BorderLayout()
         defaultCloseOperation = EXIT_ON_CLOSE
-        extendedState = MAXIMIZED_BOTH
-        setSize(500, 500)
+        size = Dimension(WIDTH, HEIGHT)
+        preferredSize = Dimension(WIDTH, HEIGHT)
         setLocationRelativeTo(null)
         isUndecorated = true
 
@@ -32,19 +31,23 @@ class Window : JFrame() {
         initialPanel = InitialPanel(this)
         add(initialPanel)
 
-
-        //boardPanel = BoardPanel(this)
-
-        //chess.observer = boardPanel
-
-        //add(boardPanel, BorderLayout.CENTER)
-
-
     }
 
     fun refresh() {
         revalidate()
         repaint()
     }
+
+    fun transform() {
+        dispose()
+        isUndecorated = false
+        isVisible = true
+    }
+
+    fun adjust() {
+        pack()
+        setLocationRelativeTo(null)
+    }
+
 
 }

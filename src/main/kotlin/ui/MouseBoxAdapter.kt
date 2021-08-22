@@ -1,8 +1,10 @@
 package ui
 
 import model.Box
+import model.Chess
 import model.Piece
 import model.Team
+import network.Packet
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 
@@ -19,23 +21,15 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
         // If is not on movement
         if (!chess.onMovement) {
             if (pieceTouched != null) {
-
-                // Handle turn
-                if (pieceTouched.team == Team.WHITE && chess.whiteTurn || pieceTouched.team == Team.BLACK && !chess.whiteTurn) {
-                    enableActiveBoxes()
-                }
+                handleBehaviour(pieceTouched, chess)
             }
             // If it is on movement
         } else {
             handleMovement()
         }
 
-        // Update UI
-        if (chess.whiteTurn) {
-            panelBoard.drawBoard(chess.board)
-        } else {
-            panelBoard.drawBoard(chess.rotateBoard180())
-        }
+        updateUI(chess)
+
     }
 
     // Putting all previous active boxes to their original color
@@ -94,14 +88,68 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
 
             // Check if the box touched is a possible movement, if so, then move the piece
             if (chess.possibleBoxes.contains(boxTouched)) {
+                // Do the movement
                 chess.activePiece?.move(chess.board, boxTouched.position)
+                // Disable all before send
+                disableAll(chess)
+                // Send the current state of the Chess
+                handleMovementNetwork()
             }
         }
 
+        // Disable all in case the active piece were not moved
+        disableAll(chess)
+
+    }
+
+    private fun disableAll(chess: Chess) {
         chess.activePiece = null
         chess.onMovement = false
         disablePreviousActiveBoxes()
+    }
 
+    private fun handleMovementNetwork() {
+        if (panelBoard is ServerBoardPanel) {
+            panelBoard.server.send(Packet(panelBoard.window.chess))
+        } else if (panelBoard is ClientBoardPanel) {
+            panelBoard.client.send(Packet(panelBoard.window.chess))
+        }
+    }
+
+    private fun handleBehaviour(pieceTouched: Piece?, chess: Chess) {
+        if (panelBoard is ServerBoardPanel) {
+            handleOnlyWhite(pieceTouched, chess)
+        } else {
+            handleOnlyBlack(pieceTouched, chess)
+        }
+    }
+
+    private fun handleOnlyWhite(pieceTouched: Piece?, chess: Chess) {
+        if (pieceTouched?.team == Team.WHITE && chess.whiteTurn) {
+            enableActiveBoxes()
+        }
+    }
+
+    private fun handleOnlyBlack(pieceTouched: Piece?, chess: Chess) {
+        if (pieceTouched?.team == Team.BLACK && !chess.whiteTurn) {
+            enableActiveBoxes()
+        }
+    }
+
+    private fun handleTurnTwoPlayers(pieceTouched: Piece, chess: Chess) {
+        // Handle turn two player in same device
+        if (pieceTouched.team == Team.WHITE && chess.whiteTurn || pieceTouched.team == Team.BLACK && !chess.whiteTurn) {
+            enableActiveBoxes()
+        }
+    }
+
+    private fun updateUI(chess: Chess) {
+        // Update UI
+        if (panelBoard is ClientBoardPanel) {
+            panelBoard.drawBoard(chess.rotateBoard180())
+        } else {
+            panelBoard.drawBoard(chess.board)
+        }
     }
 
 }

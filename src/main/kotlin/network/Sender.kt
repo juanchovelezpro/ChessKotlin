@@ -4,7 +4,7 @@ import java.io.ObjectOutputStream
 
 class Sender(private val outputStream: ObjectOutputStream, val observer: NetworkObserver) : Thread() {
 
-    fun send(packet: Packet){
+    fun send(packet: Packet) {
         outputStream.writeObject(packet)
         observer.onDataSent(packet)
     }

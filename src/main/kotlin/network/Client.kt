@@ -22,7 +22,7 @@ class Client(private val host: String, private val port: Int, val observer: Netw
         receiver.start()
     }
 
-    fun send(packet: Packet){
+    fun send(packet: Packet) {
         sender.send(packet)
     }
 

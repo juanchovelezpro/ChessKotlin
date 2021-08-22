@@ -9,9 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Refactor networking">
+    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Networking test">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ui/ClientBoardPanel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ui/ServerBoardPanel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/network/Client.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/network/Client.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/network/Sender.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/network/Sender.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/BoardPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/BoardPanel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/MouseBoxAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/MouseBoxAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/Window.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/Window.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +132,53 @@
       <command value="gradle --init-script" />
     </option>
   </component>
-  <component name="RunManager" selected="Kotlin.LauncherKt">
+  <component name="RunManager" selected="Gradle.Chess [clean]">
+    <configuration name="Chess [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Chess [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Chess-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/build/libs/Chess-1.0-SNAPSHOT.jar" />
+      <method v="2" />
+    </configuration>
     <configuration name="ClientKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="network.ClientKt" />
       <module name="Chess.main" />
@@ -135,27 +188,6 @@
     </configuration>
     <configuration name="LauncherKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="launcher.LauncherKt" />
-      <module name="Chess.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="NetworkClientAdapterKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="network.NetworkClientAdapterKt" />
-      <module name="Chess.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="NetworkServerAdapterKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="network.NetworkServerAdapterKt" />
-      <module name="Chess.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ServerKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="network.ServerKt" />
       <module name="Chess.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -174,11 +206,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.Chess [clean]" />
         <item itemvalue="Kotlin.LauncherKt" />
+        <item itemvalue="JAR Application.Chess-1.0-SNAPSHOT.jar" />
+        <item itemvalue="Gradle.Chess [jar]" />
         <item itemvalue="Kotlin.ClientKt" />
-        <item itemvalue="Kotlin.ServerKt" />
-        <item itemvalue="Kotlin.NetworkServerAdapterKt" />
-        <item itemvalue="Kotlin.NetworkClientAdapterKt" />
       </list>
     </recent_temporary>
   </component>
@@ -208,7 +240,8 @@
       <workItem from="1629472816202" duration="419000" />
       <workItem from="1629473248514" duration="35291000" />
       <workItem from="1629588075243" duration="732000" />
-      <workItem from="1629588976912" duration="26380000" />
+      <workItem from="1629588976912" duration="26571000" />
+      <workItem from="1629655889540" duration="6637000" />
     </task>
     <task id="LOCAL-00001" summary="Pawn movement done.">
       <created>1629069887034</created>
@@ -476,7 +509,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629615391184</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Networking test">
+      <created>1629615792911</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1629615792911</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -495,7 +535,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix logic movement." />
     <MESSAGE value="&quot;En Passant&quot; movement added. Only possible movement but no the kill action yet" />
     <MESSAGE value="En Passant movement done" />
     <MESSAGE value="Castling done" />
@@ -520,6 +559,7 @@
     <MESSAGE value="Implementing new GUI and server/client" />
     <MESSAGE value="Setting up Networking module" />
     <MESSAGE value="Refactor networking" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor networking" />
+    <MESSAGE value="Networking test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Networking test" />
   </component>
 </project>

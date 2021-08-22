@@ -1,7 +1,6 @@
 package ui
 
 import model.*
-import java.awt.Dimension
 import java.awt.Font
 import java.awt.GridLayout
 import javax.swing.JLabel
@@ -9,16 +8,15 @@ import javax.swing.JPanel
 import javax.swing.SwingConstants
 import javax.swing.border.BevelBorder
 
-class BoardPanel(val window: Window) : JPanel(), ChessActions {
+open class BoardPanel(val window: Window) : JPanel(), ChessActions {
 
     lateinit var board: Array<Array<JLabel>>
 
     init {
 
         layout = GridLayout(8, 8)
-        size = Dimension(Window.WIDTH - Window.WIDTH / 3, Window.HEIGHT)
+        //size = Dimension(Window.WIDTH - Window.WIDTH / 3, Window.HEIGHT)
 
-        drawBoard(window.chess.board)
     }
 
     fun drawBoard(boardChess: Array<Array<Box>>) {
