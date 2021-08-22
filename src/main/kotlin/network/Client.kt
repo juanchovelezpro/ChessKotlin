@@ -22,6 +22,10 @@ class Client(private val host: String, private val port: Int, val observer: Netw
         receiver.start()
     }
 
+    fun send(packet: Packet){
+        sender.send(packet)
+    }
+
     override fun onConnection(socket: Socket?) {
         println("Connected!")
         observer?.onConnection(socket)
