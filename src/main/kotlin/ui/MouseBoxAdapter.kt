@@ -112,7 +112,7 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
         if (panelBoard is ServerBoardPanel) {
             panelBoard.server.send(Packet(panelBoard.window.chess))
         } else if (panelBoard is ClientBoardPanel) {
-            panelBoard.client.send(Packet(panelBoard.window.chess))
+            panelBoard.client?.send(Packet(panelBoard.window.chess))
         }
     }
 

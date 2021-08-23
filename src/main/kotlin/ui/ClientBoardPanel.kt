@@ -5,13 +5,16 @@ import network.Client
 import network.NetworkObserver
 import network.Packet
 import java.net.Socket
+import javax.swing.JOptionPane
 
 class ClientBoardPanel(window: Window) : BoardPanel(window), NetworkObserver {
 
-    val client = Client("192.168.1.8", 20980, this)
+    var client : Client? = null
 
     init {
-        client.start()
+        val address = JOptionPane.showInputDialog(window,"Server Address", "Enter the server address")
+        client = Client(address, 20980, this)
+        client?.start()
         drawBoard(window.chess.rotateBoard180())
     }
 

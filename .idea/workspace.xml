@@ -9,9 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Chess working with LAN connection">
+    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Reformat code.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Chess.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Chess.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/ClientBoardPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/ClientBoardPanel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/MouseBoxAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/MouseBoxAdapter.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,8 +201,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="JAR Application.Chess-1.0-SNAPSHOT.jar" />
-        <item itemvalue="Kotlin.LauncherKt" />
         <item itemvalue="Gradle.Chess [jar]" />
+        <item itemvalue="Kotlin.LauncherKt" />
         <item itemvalue="Gradle.Chess [clean]" />
         <item itemvalue="Kotlin.ClientKt" />
       </list>
@@ -235,6 +236,7 @@
       <workItem from="1629588075243" duration="732000" />
       <workItem from="1629588976912" duration="26571000" />
       <workItem from="1629655889540" duration="13735000" />
+      <workItem from="1629675744839" duration="1723000" />
     </task>
     <task id="LOCAL-00001" summary="Pawn movement done.">
       <created>1629069887034</created>
@@ -516,7 +518,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629662728935</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Reformat code.">
+      <created>1629673258639</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1629673258639</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -535,7 +544,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="En Passant movement done" />
     <MESSAGE value="Castling done" />
     <MESSAGE value="Refactor code" />
     <MESSAGE value="Refactor code and check in process" />
@@ -560,6 +568,7 @@
     <MESSAGE value="Refactor networking" />
     <MESSAGE value="Networking test" />
     <MESSAGE value="Chess working with LAN connection" />
-    <option name="LAST_COMMIT_MESSAGE" value="Chess working with LAN connection" />
+    <MESSAGE value="Reformat code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Reformat code." />
   </component>
 </project>
