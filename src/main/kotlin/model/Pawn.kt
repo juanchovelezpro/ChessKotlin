@@ -257,8 +257,15 @@ class Pawn(position: Coordinate, team: Team, observer: Chess) : Piece(position, 
         println("------------------------------------------------------------------------------")
     }
 
+    private fun handlePromotion(to: Coordinate){
+        if(to.x == 0 || to.x == 7){
+            observer.onPromotion(this, to)
+        }
+    }
+
     override fun handleMovement(from: Coordinate, to: Coordinate) {
         handleEnPassantMovement(from, to)
+        handlePromotion(to)
     }
 
     fun disableCanBeKilledEnPassant() {

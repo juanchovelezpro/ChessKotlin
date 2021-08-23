@@ -9,10 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Reformat code.">
+    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Now client asks for a server address">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/model/AIChess.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ui/SoloBoardPanel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Chess.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Chess.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/ChessActions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/ChessActions.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Pawn.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Pawn.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/BoardPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/BoardPanel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/ClientBoardPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/ClientBoardPanel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/MouseBoxAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/MouseBoxAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/ServerBoardPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/ServerBoardPanel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +73,7 @@
         <option value="Kotlin Enum" />
         <option value="Interface" />
         <option value="Kotlin Interface" />
+        <option value="Class" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -103,7 +112,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.22746186" />
     <property name="project.structure.side.proportion" value="0.19063002" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -201,8 +210,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="JAR Application.Chess-1.0-SNAPSHOT.jar" />
-        <item itemvalue="Gradle.Chess [jar]" />
         <item itemvalue="Kotlin.LauncherKt" />
+        <item itemvalue="Gradle.Chess [jar]" />
         <item itemvalue="Gradle.Chess [clean]" />
         <item itemvalue="Kotlin.ClientKt" />
       </list>
@@ -236,7 +245,7 @@
       <workItem from="1629588075243" duration="732000" />
       <workItem from="1629588976912" duration="26571000" />
       <workItem from="1629655889540" duration="13735000" />
-      <workItem from="1629675744839" duration="1723000" />
+      <workItem from="1629675744839" duration="8197000" />
     </task>
     <task id="LOCAL-00001" summary="Pawn movement done.">
       <created>1629069887034</created>
@@ -525,7 +534,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629673258639</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Now client asks for a server address">
+      <created>1629677882258</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1629677882258</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -544,7 +560,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Castling done" />
     <MESSAGE value="Refactor code" />
     <MESSAGE value="Refactor code and check in process" />
     <MESSAGE value="Check first condition done: King cannot move to a positions where can be killed" />
@@ -569,6 +584,7 @@
     <MESSAGE value="Networking test" />
     <MESSAGE value="Chess working with LAN connection" />
     <MESSAGE value="Reformat code." />
-    <option name="LAST_COMMIT_MESSAGE" value="Reformat code." />
+    <MESSAGE value="Now client asks for a server address" />
+    <option name="LAST_COMMIT_MESSAGE" value="Now client asks for a server address" />
   </component>
 </project>

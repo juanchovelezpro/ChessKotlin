@@ -3,28 +3,24 @@ package ui
 import model.*
 import java.awt.Font
 import java.awt.GridLayout
+import java.io.Serializable
 import javax.swing.JLabel
+import javax.swing.JOptionPane
 import javax.swing.JPanel
 import javax.swing.SwingConstants
 import javax.swing.border.BevelBorder
 
-open class BoardPanel(val window: Window) : JPanel(), ChessActions {
+open class BoardPanel(val window: Window) : JPanel(), ChessActions, Serializable{
 
     lateinit var board: Array<Array<JLabel>>
 
     init {
-
         layout = GridLayout(8, 8)
-        //size = Dimension(Window.WIDTH - Window.WIDTH / 3, Window.HEIGHT)
-
     }
 
     fun drawBoard(boardChess: Array<Array<Box>>) {
-
         removeAll()
-
         updateBoard(boardChess)
-
         revalidate()
         repaint()
     }
@@ -59,7 +55,17 @@ open class BoardPanel(val window: Window) : JPanel(), ChessActions {
 
     }
 
-    override fun onPromotion(pawn: Pawn) {
+    override fun onPromotion(pawn: Pawn, promPosition: Coordinate): Piece {
+
+        val options = arrayOf("Queen","Knight","Bishop","Rook")
+        val piece = JOptionPane.showInputDialog(window,"Which piece you want?","Promotion", JOptionPane.QUESTION_MESSAGE,null,options,options[0])
+
+        return when(piece){
+            "Rook" -> Rook(promPosition,pawn.team,pawn.observer)
+            "Bishop" -> Bishop(promPosition, pawn.team, pawn.observer)
+            "Knight" -> Knight(promPosition, pawn.team, pawn.observer)
+            else -> Queen(promPosition,pawn.team,pawn.observer)
+        }
 
     }
 

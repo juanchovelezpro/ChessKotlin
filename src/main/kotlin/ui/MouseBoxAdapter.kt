@@ -109,6 +109,8 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
     }
 
     private fun handleMovementNetwork() {
+        // This is for handle the Serilization of GUI so in this way only send logic, and every packet received the observer must assign the observer to chess again
+        panelBoard.window.chess.observer = null
         if (panelBoard is ServerBoardPanel) {
             panelBoard.server.send(Packet(panelBoard.window.chess))
         } else if (panelBoard is ClientBoardPanel) {
@@ -119,8 +121,10 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
     private fun handleBehaviour(pieceTouched: Piece?, chess: Chess) {
         if (panelBoard is ServerBoardPanel) {
             handleOnlyWhite(pieceTouched, chess)
-        } else {
+        } else if(panelBoard is ClientBoardPanel) {
             handleOnlyBlack(pieceTouched, chess)
+        } else{
+            handleTurnTwoPlayers(pieceTouched,chess)
         }
     }
 
@@ -136,9 +140,9 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
         }
     }
 
-    private fun handleTurnTwoPlayers(pieceTouched: Piece, chess: Chess) {
+    private fun handleTurnTwoPlayers(pieceTouched: Piece?, chess: Chess) {
         // Handle turn two player in same device
-        if (pieceTouched.team == Team.WHITE && chess.whiteTurn || pieceTouched.team == Team.BLACK && !chess.whiteTurn) {
+        if (pieceTouched?.team == Team.WHITE && chess.whiteTurn || pieceTouched?.team == Team.BLACK && !chess.whiteTurn) {
             enableActiveBoxes()
         }
     }

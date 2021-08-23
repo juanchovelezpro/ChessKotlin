@@ -22,6 +22,7 @@ class InitialPanel(val window: Window) : JPanel() {
 
     var btnBack = JButton("<")
 
+    var soloBoardPanel: BoardPanel? = null
     var serverBoardPanel: ServerBoardPanel? = null
     var clientBoardPanel: ClientBoardPanel? = null
 
@@ -159,15 +160,24 @@ class InitialPanel(val window: Window) : JPanel() {
 
     private fun initSoloMatch() {
         removeAll()
+        layout = BorderLayout()
+        window.transform()
+        soloBoardPanel = BoardPanel(window)
+        window.chess.observer = soloBoardPanel
+        soloBoardPanel?.drawBoard(window.chess.board)
+        add(soloBoardPanel)
+        window.adjust()
         window.refresh()
     }
 
     private fun initCreateMatch() {
+        removeAll()
         layout = BorderLayout()
         window.transform()
         waitingForOpponents()
         window.isResizable = false
         serverBoardPanel = ServerBoardPanel(window)
+        window.chess.observer = serverBoardPanel
         serverBoardPanel?.isOpaque = true
         add(serverBoardPanel)
         window.adjust()
@@ -178,8 +188,10 @@ class InitialPanel(val window: Window) : JPanel() {
         removeAll()
         layout = BorderLayout()
         window.transform()
+        window.isResizable = false
         clientBoardPanel = ClientBoardPanel(window)
         clientBoardPanel?.isOpaque = true
+        window.chess.observer = clientBoardPanel
         add(clientBoardPanel)
         window.adjust()
         window.refresh()

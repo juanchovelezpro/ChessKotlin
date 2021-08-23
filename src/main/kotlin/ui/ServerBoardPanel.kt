@@ -26,6 +26,7 @@ class ServerBoardPanel(window: Window) : BoardPanel(window), NetworkObserver {
     override fun onDataReceived(packet: Packet?) {
         val chess = packet?.content as Chess
         window.chess = chess
+        window.chess.observer = this
         drawBoard(window.chess.board)
     }
 

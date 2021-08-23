@@ -10,6 +10,7 @@ class Chess() : ChessActions, Serializable {
     var selectedBox: Box? = null
     var onMovement = false
     var activePiece: Piece? = null
+    var piecePromotion: Piece? = null
     var whiteTurn = true
     val whitePiecesAlive = ArrayList<Piece>()
     val blackPiecesAlive = ArrayList<Piece>()
@@ -160,8 +161,26 @@ class Chess() : ChessActions, Serializable {
         println("-----------------------------------------------------------")
     }
 
-    override fun onPromotion(pawn: Pawn) {
-        TODO("Not yet implemented")
+    override fun onPromotion(pawn: Pawn, promPosition: Coordinate): Piece {
+        val piece = observer?.onPromotion(pawn, promPosition)
+        piecePromotion = piece
+        return piece!!
+    }
+
+    private fun handleOnPromotion(){
+        if(piecePromotion != null){
+            val pawnToRemove = board[piecePromotion?.position!!.x][piecePromotion?.position!!.y].piece
+            if(piecePromotion?.team == Team.WHITE){
+                whitePiecesAlive.remove(pawnToRemove)
+                whitePiecesAlive.add(piecePromotion!!)
+            }else{
+                blackPiecesAlive.remove(pawnToRemove)
+                blackPiecesAlive.add(piecePromotion!!)
+            }
+
+            board[pawnToRemove?.position!!.x][pawnToRemove.position.y].piece = piecePromotion
+            piecePromotion = null
+        }
     }
 
     override fun onCheck(team: Team) {
@@ -256,6 +275,8 @@ class Chess() : ChessActions, Serializable {
     }
 
     override fun onTurnChanged() {
+        handleOnPromotion()
+
         whiteTurn = !whiteTurn
 
         handleActiveEnPassant()
