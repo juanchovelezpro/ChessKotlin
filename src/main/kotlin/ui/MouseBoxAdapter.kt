@@ -121,10 +121,10 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
     private fun handleBehaviour(pieceTouched: Piece?, chess: Chess) {
         if (panelBoard is ServerBoardPanel) {
             handleOnlyWhite(pieceTouched, chess)
-        } else if(panelBoard is ClientBoardPanel) {
+        } else if (panelBoard is ClientBoardPanel) {
             handleOnlyBlack(pieceTouched, chess)
-        } else{
-            handleTurnTwoPlayers(pieceTouched,chess)
+        } else {
+            handleTurnTwoPlayers(pieceTouched, chess)
         }
     }
 

@@ -9,18 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Now client asks for a server address">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/model/AIChess.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ui/SoloBoardPanel.kt" afterDir="false" />
+    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Promotion done.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Chess.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Chess.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/ChessActions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/ChessActions.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Pawn.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Pawn.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/BoardPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/BoardPanel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/ClientBoardPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/ClientBoardPanel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/MouseBoxAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/MouseBoxAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/ServerBoardPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/ServerBoardPanel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/King.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/King.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +126,7 @@
       <command value="gradle --init-script" />
     </option>
   </component>
-  <component name="RunManager" selected="JAR Application.Chess-1.0-SNAPSHOT.jar">
+  <component name="RunManager" selected="Kotlin.LauncherKt">
     <configuration name="Chess [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -209,8 +200,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JAR Application.Chess-1.0-SNAPSHOT.jar" />
         <item itemvalue="Kotlin.LauncherKt" />
+        <item itemvalue="JAR Application.Chess-1.0-SNAPSHOT.jar" />
         <item itemvalue="Gradle.Chess [jar]" />
         <item itemvalue="Gradle.Chess [clean]" />
         <item itemvalue="Kotlin.ClientKt" />
@@ -245,7 +236,7 @@
       <workItem from="1629588075243" duration="732000" />
       <workItem from="1629588976912" duration="26571000" />
       <workItem from="1629655889540" duration="13735000" />
-      <workItem from="1629675744839" duration="8197000" />
+      <workItem from="1629675744839" duration="11978000" />
     </task>
     <task id="LOCAL-00001" summary="Pawn movement done.">
       <created>1629069887034</created>
@@ -541,7 +532,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629677882258</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Promotion done.">
+      <created>1629685645642</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1629685645642</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -560,7 +558,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactor code" />
     <MESSAGE value="Refactor code and check in process" />
     <MESSAGE value="Check first condition done: King cannot move to a positions where can be killed" />
     <MESSAGE value="Bug about Rook and Bishop checks King through other enemy pieces has been fixed" />
@@ -585,6 +582,7 @@
     <MESSAGE value="Chess working with LAN connection" />
     <MESSAGE value="Reformat code." />
     <MESSAGE value="Now client asks for a server address" />
-    <option name="LAST_COMMIT_MESSAGE" value="Now client asks for a server address" />
+    <MESSAGE value="Promotion done." />
+    <option name="LAST_COMMIT_MESSAGE" value="Promotion done." />
   </component>
 </project>

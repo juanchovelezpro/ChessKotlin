@@ -167,13 +167,13 @@ class Chess() : ChessActions, Serializable {
         return piece!!
     }
 
-    private fun handleOnPromotion(){
-        if(piecePromotion != null){
+    private fun handleOnPromotion() {
+        if (piecePromotion != null) {
             val pawnToRemove = board[piecePromotion?.position!!.x][piecePromotion?.position!!.y].piece
-            if(piecePromotion?.team == Team.WHITE){
+            if (piecePromotion?.team == Team.WHITE) {
                 whitePiecesAlive.remove(pawnToRemove)
                 whitePiecesAlive.add(piecePromotion!!)
-            }else{
+            } else {
                 blackPiecesAlive.remove(pawnToRemove)
                 blackPiecesAlive.add(piecePromotion!!)
             }

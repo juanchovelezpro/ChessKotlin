@@ -2,7 +2,7 @@ package model
 
 import java.io.Serializable
 
-interface ChessActions : Serializable{
+interface ChessActions : Serializable {
     fun onKill(murdered: Piece)
     fun onMovement(from: Coordinate, to: Coordinate, piece: Piece)
     fun onPromotion(pawn: Pawn, promPosition: Coordinate): Piece

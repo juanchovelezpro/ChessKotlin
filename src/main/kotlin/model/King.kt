@@ -20,7 +20,16 @@ class King(position: Coordinate, team: Team, observer: Chess) : Piece(position, 
 
 
         if (!firstMovementDone) {
-            verifyCastling(board, pMovements)
+            if (team == Team.WHITE && observer.whiteTurn) {
+                if (!observer.whiteInCheck) {
+                    verifyCastling(board, pMovements)
+                }
+            }
+            if (team == Team.BLACK && !observer.whiteTurn) {
+                if (!observer.blackInCheck) {
+                    verifyCastling(board, pMovements)
+                }
+            }
         }
 
         // Left
@@ -78,10 +87,6 @@ class King(position: Coordinate, team: Team, observer: Chess) : Piece(position, 
     override fun canKillBoxes(): ArrayList<Box> {
         val canKillBoxes = ArrayList<Box>()
         val board = observer.board
-
-        if (!firstMovementDone) {
-            verifyCastling(board, canKillBoxes)
-        }
 
         // Left
         if (position.y > 0) {

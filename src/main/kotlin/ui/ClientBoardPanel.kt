@@ -9,10 +9,10 @@ import javax.swing.JOptionPane
 
 class ClientBoardPanel(window: Window) : BoardPanel(window), NetworkObserver {
 
-    var client : Client? = null
+    var client: Client? = null
 
     init {
-        val address = JOptionPane.showInputDialog(window,"Server Address", "Enter the server address")
+        val address = JOptionPane.showInputDialog(window, "Server Address", "Enter the server address")
         client = Client(address, 20980, this)
         client?.start()
         drawBoard(window.chess.rotateBoard180())

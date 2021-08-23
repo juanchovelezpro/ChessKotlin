@@ -10,7 +10,7 @@ import javax.swing.JPanel
 import javax.swing.SwingConstants
 import javax.swing.border.BevelBorder
 
-open class BoardPanel(val window: Window) : JPanel(), ChessActions, Serializable{
+open class BoardPanel(val window: Window) : JPanel(), ChessActions, Serializable {
 
     lateinit var board: Array<Array<JLabel>>
 
@@ -57,14 +57,22 @@ open class BoardPanel(val window: Window) : JPanel(), ChessActions, Serializable
 
     override fun onPromotion(pawn: Pawn, promPosition: Coordinate): Piece {
 
-        val options = arrayOf("Queen","Knight","Bishop","Rook")
-        val piece = JOptionPane.showInputDialog(window,"Which piece you want?","Promotion", JOptionPane.QUESTION_MESSAGE,null,options,options[0])
+        val options = arrayOf("Queen", "Knight", "Bishop", "Rook")
+        val piece = JOptionPane.showInputDialog(
+            window,
+            "Which piece you want?",
+            "Promotion",
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            options,
+            options[0]
+        )
 
-        return when(piece){
-            "Rook" -> Rook(promPosition,pawn.team,pawn.observer)
+        return when (piece) {
+            "Rook" -> Rook(promPosition, pawn.team, pawn.observer)
             "Bishop" -> Bishop(promPosition, pawn.team, pawn.observer)
             "Knight" -> Knight(promPosition, pawn.team, pawn.observer)
-            else -> Queen(promPosition,pawn.team,pawn.observer)
+            else -> Queen(promPosition, pawn.team, pawn.observer)
         }
 
     }
