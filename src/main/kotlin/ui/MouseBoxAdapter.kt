@@ -93,7 +93,7 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
                 // Disable all before send
                 disableAll(chess)
                 // Send the current state of the Chess
-                handleMovementNetwork()
+                handleMovementGameMode()
             }
         }
 
@@ -108,23 +108,24 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
         disablePreviousActiveBoxes()
     }
 
-    private fun handleMovementNetwork() {
+    private fun handleMovementGameMode() {
         // This is for handle the Serilization of GUI so in this way only send logic, and every packet received the observer must assign the observer to chess again
-        panelBoard.window.chess.observer = null
         if (panelBoard is ServerBoardPanel) {
+            panelBoard.window.chess.observer = null
             panelBoard.server.send(Packet(panelBoard.window.chess))
         } else if (panelBoard is ClientBoardPanel) {
+            panelBoard.window.chess.observer = null
             panelBoard.client?.send(Packet(panelBoard.window.chess))
+        }else if (panelBoard is SoloBoardPanel){
+            panelBoard.AI.move()
         }
     }
 
     private fun handleBehaviour(pieceTouched: Piece?, chess: Chess) {
-        if (panelBoard is ServerBoardPanel) {
+        if (panelBoard is ServerBoardPanel || panelBoard is SoloBoardPanel) {
             handleOnlyWhite(pieceTouched, chess)
         } else if (panelBoard is ClientBoardPanel) {
             handleOnlyBlack(pieceTouched, chess)
-        } else {
-            handleTurnTwoPlayers(pieceTouched, chess)
         }
     }
 

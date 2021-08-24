@@ -162,7 +162,7 @@ class InitialPanel(val window: Window) : JPanel() {
         removeAll()
         layout = BorderLayout()
         window.transform()
-        soloBoardPanel = BoardPanel(window)
+        soloBoardPanel = SoloBoardPanel(window)
         window.chess.observer = soloBoardPanel
         soloBoardPanel?.drawBoard(window.chess.board)
         add(soloBoardPanel)

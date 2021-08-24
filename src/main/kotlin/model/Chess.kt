@@ -2,7 +2,7 @@ package model
 
 import java.io.Serializable
 
-class Chess() : ChessActions, Serializable {
+class Chess : ChessActions, Serializable {
 
     val board = Array(8) { x -> Array(8) { y -> Box(Coordinate(x, y), null) } }
 

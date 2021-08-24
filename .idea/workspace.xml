@@ -9,9 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Promotion done.">
+    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Kings now cannot do castling if they are in check">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/King.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/King.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/AIChess.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/AIChess.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Chess.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Chess.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/MouseBoxAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/MouseBoxAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/SoloBoardPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/SoloBoardPanel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +240,8 @@
       <workItem from="1629588075243" duration="732000" />
       <workItem from="1629588976912" duration="26571000" />
       <workItem from="1629655889540" duration="13735000" />
-      <workItem from="1629675744839" duration="11978000" />
+      <workItem from="1629675744839" duration="16256000" />
+      <workItem from="1629768001733" duration="4543000" />
     </task>
     <task id="LOCAL-00001" summary="Pawn movement done.">
       <created>1629069887034</created>
@@ -539,7 +544,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629685645642</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Kings now cannot do castling if they are in check">
+      <created>1629689957510</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1629689957510</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -558,7 +570,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactor code and check in process" />
     <MESSAGE value="Check first condition done: King cannot move to a positions where can be killed" />
     <MESSAGE value="Bug about Rook and Bishop checks King through other enemy pieces has been fixed" />
     <MESSAGE value="An ally cannot move if that movements implies that the king will be in danger" />
@@ -583,6 +594,7 @@
     <MESSAGE value="Reformat code." />
     <MESSAGE value="Now client asks for a server address" />
     <MESSAGE value="Promotion done." />
-    <option name="LAST_COMMIT_MESSAGE" value="Promotion done." />
+    <MESSAGE value="Kings now cannot do castling if they are in check" />
+    <option name="LAST_COMMIT_MESSAGE" value="Kings now cannot do castling if they are in check" />
   </component>
 </project>
