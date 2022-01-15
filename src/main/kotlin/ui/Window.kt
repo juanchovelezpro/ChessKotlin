@@ -25,9 +25,8 @@ class Window : JFrame() {
         size = Dimension(WIDTH, HEIGHT)
         preferredSize = Dimension(WIDTH, HEIGHT)
         setLocationRelativeTo(null)
-        isUndecorated = true
         iconImage = ImageLoader.loadImage("logo.png")
-
+        isResizable = false
         chess = Chess()
 
         initialPanel = InitialPanel(this)
@@ -42,7 +41,6 @@ class Window : JFrame() {
 
     fun transform() {
         dispose()
-        isUndecorated = false
         isVisible = true
     }
 

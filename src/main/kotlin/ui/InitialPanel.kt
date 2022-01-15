@@ -43,7 +43,7 @@ class InitialPanel(val window: Window) : JPanel() {
 
         // Button Play
         btnPlay.size = size
-        btnPlay.location = Point(Window.WIDTH / 2 - size.width / 2, Window.HEIGHT / 2 - size.height / 2)
+        btnPlay.location = Point(Window.WIDTH / 2 - size.width / 2, Window.HEIGHT / 2 - Window.HEIGHT / 12)
         btnPlay.font = Window.FONT
         btnPlay.foreground = Color.WHITE
         btnPlay.background = backgroundColor
@@ -77,7 +77,7 @@ class InitialPanel(val window: Window) : JPanel() {
 
         // Button solo
         btnSolo.size = size
-        btnSolo.location = Point(Window.WIDTH / 2 - size.width / 2, Window.HEIGHT / 2 - size.height / 2)
+        btnSolo.location = Point(Window.WIDTH / 2 - size.width / 2, Window.HEIGHT / 2 - Window.HEIGHT / 12)
         btnSolo.font = Window.FONT
         btnSolo.foreground = Color.WHITE
         btnSolo.background = backgroundColor
