@@ -9,13 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Kings now cannot do castling if they are in check">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Change window and buttons positions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/InitialPanel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/Window.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/Window.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/SoloBoardPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/SoloBoardPanel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +231,8 @@
       <workItem from="1629675744839" duration="16256000" />
       <workItem from="1629768001733" duration="4543000" />
       <workItem from="1642284591437" duration="13000" />
-      <workItem from="1642284616036" duration="1233000" />
+      <workItem from="1642284616036" duration="2616000" />
+      <workItem from="1642377522130" duration="1039000" />
     </task>
     <task id="LOCAL-00001" summary="Pawn movement done.">
       <created>1629069887034</created>
@@ -545,7 +542,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629689957510</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Change window and buttons positions">
+      <created>1642285943631</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1642285943631</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -563,7 +567,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Check first condition done: King cannot move to a positions where can be killed" />
     <MESSAGE value="Bug about Rook and Bishop checks King through other enemy pieces has been fixed" />
     <MESSAGE value="An ally cannot move if that movements implies that the king will be in danger" />
     <MESSAGE value="An ally now can kill an enemy checking king in danger. (It was a bug, the piece cannot kill because the method says that the king could be in danger)" />
@@ -588,6 +591,7 @@
     <MESSAGE value="Now client asks for a server address" />
     <MESSAGE value="Promotion done." />
     <MESSAGE value="Kings now cannot do castling if they are in check" />
-    <option name="LAST_COMMIT_MESSAGE" value="Kings now cannot do castling if they are in check" />
+    <MESSAGE value="Change window and buttons positions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change window and buttons positions" />
   </component>
 </project>
