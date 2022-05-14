@@ -5,6 +5,7 @@ import network.NetworkObserver
 import network.Packet
 import network.Server
 import java.net.Socket
+import kotlin.concurrent.thread
 
 class ServerBoardPanel(window: Window) : BoardPanel(window), NetworkObserver {
 
@@ -12,7 +13,7 @@ class ServerBoardPanel(window: Window) : BoardPanel(window), NetworkObserver {
 
 
     init {
-        server.start()
+        thread { server.start() }
     }
 
 

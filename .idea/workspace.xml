@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="AI can choose a piece on promotion">
+    <list default="true" id="608705c7-a637-43d0-b8cc-9659d307b0c2" name="Changes" comment="Cleaning up code.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/model/Chess.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/model/Chess.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ui/ServerBoardPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ui/ServerBoardPanel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,6 +236,7 @@
       <workItem from="1644688012414" duration="10000" />
       <workItem from="1652415053445" duration="4666000" />
       <workItem from="1652499580759" duration="1609000" />
+      <workItem from="1652543327028" duration="1387000" />
     </task>
     <task id="LOCAL-00001" summary="Pawn movement done.">
       <created>1629069887034</created>
@@ -560,7 +560,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642378717977</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Cleaning up code.">
+      <created>1652544211013</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1652544211013</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -578,7 +585,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="An ally cannot move if that movements implies that the king will be in danger" />
     <MESSAGE value="An ally now can kill an enemy checking king in danger. (It was a bug, the piece cannot kill because the method says that the king could be in danger)" />
     <MESSAGE value="Checkmate and tie done." />
     <MESSAGE value="Handle turn done" />
@@ -603,7 +609,8 @@
     <MESSAGE value="Kings now cannot do castling if they are in check" />
     <MESSAGE value="Change window and buttons positions" />
     <MESSAGE value="AI can choose a piece on promotion" />
-    <option name="LAST_COMMIT_MESSAGE" value="AI can choose a piece on promotion" />
+    <MESSAGE value="Cleaning up code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaning up code." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

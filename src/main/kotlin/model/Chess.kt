@@ -140,10 +140,6 @@ class Chess : ChessActions, Serializable {
         println("------------------------ KILL ---------------------------------------")
         println("$murdered - ${murdered.team} has been killed on ${murdered.position}")
 
-
-
-
-
         if (murdered.team == Team.WHITE) {
             whitePiecesAlive.remove(murdered)
             println("White Pieces Remaining: ${whitePiecesAlive.size} = $whitePiecesAlive")
