@@ -9,7 +9,7 @@ class SoloBoardPanel(window: Window) : BoardPanel(window), ChessActions {
 
     override fun onPromotion(pawn: Pawn, promPosition: Coordinate): Piece {
 
-        return if(pawn.team == Team.BLACK){
+        return if (pawn.team == Team.BLACK) {
 
             val options = arrayOf("Rook", "Bishop", "Knight", "Queen")
 
@@ -19,7 +19,7 @@ class SoloBoardPanel(window: Window) : BoardPanel(window), ChessActions {
                 "Knight" -> Knight(promPosition, pawn.team, pawn.observer)
                 else -> Queen(promPosition, pawn.team, pawn.observer)
             }
-        }else {
+        } else {
             super.onPromotion(pawn, promPosition)
         }
     }

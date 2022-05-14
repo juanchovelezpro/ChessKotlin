@@ -116,7 +116,7 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
         } else if (panelBoard is ClientBoardPanel) {
             panelBoard.window.chess.observer = null
             panelBoard.client?.send(Packet(panelBoard.window.chess))
-        }else if (panelBoard is SoloBoardPanel){
+        } else if (panelBoard is SoloBoardPanel) {
             panelBoard.AI.move()
         }
     }

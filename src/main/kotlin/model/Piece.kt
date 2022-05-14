@@ -96,6 +96,7 @@ abstract class Piece(var position: Coordinate, val team: Team, var observer: Che
 
     }
 
+    // This method is to evaluate all the movements of a piece where can kill taking future movements to evaluate check
     abstract override fun canKillBoxes(): ArrayList<Box>
 
     override fun move(board: Array<Array<Box>>, destination: Coordinate) {
