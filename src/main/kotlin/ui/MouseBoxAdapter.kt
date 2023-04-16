@@ -118,6 +118,8 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
             panelBoard.client?.send(Packet(panelBoard.window.chess))
         } else if (panelBoard is SoloBoardPanel) {
             panelBoard.AI.move()
+        }else if (panelBoard is LocalBoardPanel){
+
         }
     }
 
@@ -126,6 +128,8 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
             handleOnlyWhite(pieceTouched, chess)
         } else if (panelBoard is ClientBoardPanel) {
             handleOnlyBlack(pieceTouched, chess)
+        }else if(panelBoard is LocalBoardPanel){
+            handleTurnTwoPlayers(pieceTouched, chess)
         }
     }
 
@@ -150,7 +154,7 @@ class MouseBoxAdapter(val panelBoard: BoardPanel, val boxTouched: Box) : MouseAd
 
     private fun updateUI(chess: Chess) {
         // Update UI
-        if (panelBoard is ClientBoardPanel) {
+        if (panelBoard is ClientBoardPanel || (!chess.whiteTurn && panelBoard is LocalBoardPanel)) {
             panelBoard.drawBoard(chess.rotateBoard180())
         } else {
             panelBoard.drawBoard(chess.board)

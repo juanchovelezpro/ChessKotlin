@@ -15,6 +15,7 @@ class InitialPanel(val window: Window) : JPanel() {
     var btnPlay = JButton("P L A Y")
 
     var btnSolo = JButton("S O L O")
+    var btnLocal = JButton("L O C A L")
     var btnCreateMatch = JButton("CREATE A MATCH")
     var btnFindMatch = JButton("FIND A MATCH")
     var btnExit = JButton("E X I T")
@@ -23,6 +24,7 @@ class InitialPanel(val window: Window) : JPanel() {
     var btnBack = JButton("<")
 
     var soloBoardPanel: BoardPanel? = null
+    var localBoardPanel: LocalBoardPanel? = null
     var serverBoardPanel: ServerBoardPanel? = null
     var clientBoardPanel: ClientBoardPanel? = null
 
@@ -84,9 +86,19 @@ class InitialPanel(val window: Window) : JPanel() {
         btnSolo.isFocusPainted = false
         btnSolo.border = border
 
+        // Button Local
+        btnLocal.size = size
+        btnLocal.location = Point(Window.WIDTH / 2 - size.width / 2, btnSolo.y + size.height + 20)
+        btnLocal.font = Window.FONT
+        btnLocal.foreground = Color.WHITE
+        btnLocal.background = backgroundColor
+        btnLocal.isFocusPainted = false
+        btnLocal.border = border
+
+
         // Button LAN Match
         btnCreateMatch.size = size
-        btnCreateMatch.location = Point(Window.WIDTH / 2 - size.width / 2, btnSolo.y + size.height + 20)
+        btnCreateMatch.location = Point(Window.WIDTH / 2 - size.width / 2, btnLocal.y + size.height + 28)
         btnCreateMatch.font = Window.FONT
         btnCreateMatch.foreground = Color.WHITE
         btnCreateMatch.background = backgroundColor
@@ -95,13 +107,12 @@ class InitialPanel(val window: Window) : JPanel() {
 
         // Button Find Match
         btnFindMatch.size = size
-        btnFindMatch.location = Point(Window.WIDTH / 2 - size.width / 2, btnCreateMatch.y + size.height + 20)
+        btnFindMatch.location = Point(Window.WIDTH / 2 - size.width / 2, btnCreateMatch.y + size.height + 36)
         btnFindMatch.font = Window.FONT
         btnFindMatch.foreground = Color.WHITE
         btnFindMatch.background = backgroundColor
         btnFindMatch.isFocusPainted = false
         btnFindMatch.border = border
-
 
     }
 
@@ -113,6 +124,7 @@ class InitialPanel(val window: Window) : JPanel() {
     private fun addGameModes() {
         add(btnBack)
         add(btnSolo)
+        add(btnLocal)
         add(btnCreateMatch)
         add(btnFindMatch)
     }
@@ -134,6 +146,10 @@ class InitialPanel(val window: Window) : JPanel() {
 
         btnSolo.addActionListener {
             initSoloMatch()
+        }
+
+        btnLocal.addActionListener {
+            initLocalMatch()
         }
 
         btnCreateMatch.addActionListener {
@@ -166,6 +182,18 @@ class InitialPanel(val window: Window) : JPanel() {
         window.chess.observer = soloBoardPanel
         soloBoardPanel?.drawBoard(window.chess.board)
         add(soloBoardPanel)
+        window.adjust()
+        window.refresh()
+    }
+
+    private fun initLocalMatch(){
+        removeAll()
+        layout = BorderLayout()
+        window.transform()
+        localBoardPanel = LocalBoardPanel(window)
+        window.chess.observer = localBoardPanel
+        localBoardPanel?.drawBoard(window.chess.board)
+        add(localBoardPanel)
         window.adjust()
         window.refresh()
     }
