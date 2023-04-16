@@ -187,16 +187,19 @@ class Chess : ChessActions, Serializable {
         println("-------------------- CHECK --------------------")
         println("Team -> $team is in check!!!!")
         println("-----------------------------------------------")
+        observer?.onCheck(team)
     }
 
     override fun onCheckMate(winner: Team, loser: Team) {
         println("------------ ¡¡¡¡ CHECKMATE !!!! -------------")
         println("Winner: $winner ----------- Loser: $loser")
         println("----------------------------------------------")
+        observer?.onCheckMate(winner, loser)
     }
 
     override fun onTie() {
         println("Nobody wins...")
+        observer?.onTie()
     }
 
     private fun verifyCheckAndTie(king: King) {

@@ -78,15 +78,15 @@ open class BoardPanel(val window: Window) : JPanel(), ChessActions, Serializable
     }
 
     override fun onCheck(team: Team) {
-
+        JOptionPane.showMessageDialog(window, "Check! on $team")
     }
 
     override fun onCheckMate(winner: Team, loser: Team) {
-
+        JOptionPane.showMessageDialog(window, "Checkmate!, Winner: $winner, Loser: $loser")
     }
 
     override fun onTie() {
-
+        JOptionPane.showMessageDialog(window, "Tie!")
     }
 
     override fun onTurnChanged() {
